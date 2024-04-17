@@ -1,0 +1,141 @@
+﻿@model IEnumerable<SSLazio.Models.Partite>
+
+@{
+    ViewBag.Title = "Index";
+    var prossimaPartita = Model.OrderBy(p => p.DataOra).FirstOrDefault();
+    string meseCorrente = null;
+}
+
+<style>
+    /* body {
+        background-color: whitesmoke;
+        color: red;
+    }
+    */
+    .divMatchFirst {
+        background-image: url('/Content/Sfondi/Stadio2.jpg');
+        /* Assicurati di sostituire 'nome_immagine.jpg' con il nome effettivo del tuo file immagine */
+        background-size: cover; /* per adattare l'immagine allo spazio disponibile */
+        /* altre proprietà CSS per personalizzare la visualizzazione dell'immagine */
+    }
+
+    /* Stile per il cambio di colore al passaggio del mouse */
+    .opac {
+        transition: background-color 0.3s ease; /* Effetto di transizione più fluido */
+    }
+
+        /* Cambia il colore di sfondo al passaggio del mouse */
+        .opac:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Imposta un colore di sfondo più chiaro */
+        }
+
+    .display-7 {
+        font-size: 1.65rem; /* circa 36px */
+        font-weight: 200;
+        line-height: 1.2;
+    }
+</style>
+
+
+@if (User.IsInRole("Admin"))
+{
+    <button class="ssl-button my-3 d-flex">
+        @Html.ActionLink("Aggiungi Match", "Create",null, new { @class = "text-white text-decoration-none" })
+    </button>
+}
+
+<div class="container">
+    <div class="my-4 text-center">
+        <h3>Biglietti per le prossime partite SS Lazio</h3>
+    </div>
+
+    <!-- Partita più prossima in risalto -->
+    @if (prossimaPartita != null)
+    {
+        <div class="row divMatchFirst text-white bordoceleste mb-5">
+            <div class="col-4 my-5 justify-content-around text-center align-content-center">
+                <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + prossimaPartita.LogoLazio)" height="300" width="300" alt="Logo Lazio" />
+            </div>
+            <div class="col-4 my-5 flex-column justify-content-center text-center align-content-center">
+                <div><img class="mt-3 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + prossimaPartita.LogoCompetizione)" height="150" width="150" alt="Logo Competizione" /></div>
+                <div class="h5 display-7 d-flex justify-content-center">@prossimaPartita.DataOra</div>
+                <div>@prossimaPartita.Luogo</div>
+            </div>
+            <div class="col-4 my-5 justify-content-around text-center align-content-center">
+                <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + prossimaPartita.LogoAvversario)" height="200" width="200" alt="Logo Avversario" />
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <p>Non ci sono prossime partite.</p>
+    }
+
+    <!-- Partite Successive -->
+    @{
+        string mesePrecedente = "";
+    }
+
+    @foreach (var partita in Model.OrderBy(p => p.DataOra))
+    {
+        string meseCorrenteString = partita.DataOra.ToString("MMMM yyyy"); // Converti la data in una stringa
+
+        if (meseCorrente != meseCorrenteString)
+        {
+            if (!string.IsNullOrEmpty(meseCorrente)) // Modifica il confronto
+            {
+                // Mostra un hr solo se non è la prima iterazione
+                @Html.Raw("<hr />")
+            }
+
+            // Mostra il nome del nuovo mese
+            <h4>@meseCorrenteString</h4>
+            // Aggiorna il mese precedente
+            mesePrecedente = meseCorrenteString;
+        }
+
+        <div>
+            <div class="row align-items-center text-center opac mb-3">
+                <div class="col-sm-2 col-md-2 col-lg-2  text-center d-none d-sm-block"><img class="img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + partita.LogoCompetizione)" height="60" width="60" alt="Logo Competizione" /></div>
+
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2  text-center"><img class="img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + partita.LogoLazio)" height="60" width="60" alt="Logo Lazio" /></div>
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 mt-2 text-center">
+                    <h5>@Html.DisplayFor(model => partita.NomePartita)</h5>
+                    <p>@partita.DataOra</p>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2  text-center"><img class="img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + partita.LogoAvversario)" height="40" width="40" alt="Logo Avversario" /></div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="d-flex flex-column align-content-center">
+                            <button class="ssl-button my-2 d-flex justify-content-center m-auto">
+                                @Html.ActionLink("Edit", "Edit", new { id = partita.IdPartita }, new { @class = "text-white text-decoration-none" })
+                            </button>
+                            <button class="ssl-button mb-2 d-flex justify-content-center m-auto">
+                                @Html.ActionLink("Acquista", "Details", new { id = partita.IdPartita }, new { @class = "text-white text-decoration-none" })
+                            </button>
+                            <button class="ssl-button mb-2 d-flex justify-content-center m-auto">
+                                @Html.ActionLink("Delete", "Delete", new { id = partita.IdPartita }, new { @class = "text-white text-decoration-none" })
+                            </button>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="d-flex flex-column align-content-center">
+
+                            <button class="ssl-button my-3 d-flex justify-content-center m-auto">
+                                @Html.ActionLink("Acquista", "Details", new { id = partita.IdPartita }, new { @class = "text-white text-decoration-none" })
+                            </button>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        meseCorrente = meseCorrenteString;
+    }
+</div>

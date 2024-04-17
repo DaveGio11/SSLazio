@@ -1,0 +1,154 @@
+﻿@model SSLazio.Models.Biglietti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Biglietti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Partite.NomePartita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Partite.NomePartita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SettoriStadio.NomeSettore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SettoriStadio.NomeSettore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utenti.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utenti.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cognome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodiceFiscale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodiceFiscale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LuogoNascita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuogoNascita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Residenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Residenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Riduzione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Riduzione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroCarta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroCarta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intestatario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intestatario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scadenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scadenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cvc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cvc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPagamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailDestinatario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailDestinatario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdBiglietto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

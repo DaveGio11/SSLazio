@@ -1,0 +1,351 @@
+﻿
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+body {
+    background-color: #021332;
+    color: antiquewhite;
+    font-family: 'Roboto', sans-serif;
+}
+
+.roboto-italic {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* *************************************************** LAYOUT ----------------------------------------------------------- */
+.bg-goldwhite {
+    background: linear-gradient(to bottom right, #a38d37, #f5f5f5);
+}
+
+.dropdown-item1 {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    text-decoration: none;
+    border: 0;
+}
+
+    .dropdown-item1:hover {
+        background-image: linear-gradient(163deg, #61c8e7 0%, #FFFFFF 100%);
+        color: #021332 !important;
+    }
+
+/* *************************************************** HOME ----------------------------------------------------------- */
+
+.background-image-home {
+    background-size: cover; /* Per adattare l'immagine al contenitore */
+    background-image: url('Sfondi/Stadio2.jpg') !important; /* Sostituisci con il percorso corretto */
+    background-position: center; /* Posizione dell'immagine */
+}
+
+.text-gold {
+    color: #cbc094;
+}
+
+.text-blu {
+    color: #021332;
+}
+
+.background-divisa {
+    background-size: cover; /* Per adattare l'immagine al contenitore */
+    background-image: url('Sfondi/Divisa.jpg') !important; /* Sostituisci con il percorso corretto */
+    background-position: center; /* Posizione dell'immagine */
+}
+
+.background-trofei {
+    background-size: contain;
+    background-repeat: no-repeat; /* Per adattare l'immagine al contenitore */
+    background-image: url('Sfondi/TrofeiVentisei.jpg') !important; /* Sostituisci con il percorso corretto */
+    background-position: center; /* Posizione dell'immagine */
+}
+
+.background-divisa2 {
+    background-size: cover; /* Per adattare l'immagine al contenitore */
+    background-image: url('Sfondi/Divisa2.jpg') !important; /* Sostituisci con il percorso corretto */
+    background-position: center; /* Posizione dell'immagine */
+}
+
+.bordoceleste {
+    text-shadow: -1px -1px 0 #9dd7e8, 1px -1px 0 #9dd7e8, -1px 1px 0 #9dd7e8, 1px 1px 0 #9dd7e8;
+}
+
+/* GIOCATORI: INDEX */
+
+.card1 {
+    background-color: black;
+    width: 250px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    box-shadow: 2px 2px 19px;
+    background-clip: border-box;
+    word-wrap: break-word;
+}
+
+    .card1::before {
+        content: "";
+        position: absolute;
+        z-index: -19;
+        width: 262px;
+        height: 312px;
+        margin: auto;
+        background: rgb(4,0,255);
+        background: linear-gradient(135deg, rgba(143, 123, 34, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(173, 216, 230, 1) 100%);
+        border-radius: 6px;
+    }
+
+    .card1::after {
+        content: "";
+        position: absolute;
+        z-index: -19;
+        width: 262px;
+        height: 312px;
+        margin: auto;
+        background: rgb(4,0,255);
+        background: linear-gradient(135deg, rgba(143, 123, 34, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(173, 216, 230, 1) 100%);
+        border-radius: 6px;
+        filter: blur(20px);
+        transition: 2s;
+    }
+
+    .card1:hover::after {
+        animation: cardafter 2.5s infinite forwards;
+    }
+
+.card-body {
+    width: 218px;
+}
+
+.bordobianco {
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+/* GIOCATORI: INDEX & DETAILS*/
+
+.ssl-button {
+    min-height: 30px;
+    min-width: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    position: relative;
+    cursor: pointer;
+    background: -webkit-gradient(linear, left top, right top, color-stop(-12.74%, rgba(110, 239, 255, .5)), color-stop(56.76%, rgba(106, 224, 255, .271)));
+    background: linear-gradient(90deg, rgba(110, 239, 255, .5) -12.74%, rgba(106, 224, 255, .271) 56.76%);
+    border: 2px solid #acf7ff;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+    .ssl-button:before {
+        content: "";
+        width: 4px;
+        height: 28px;
+        background: #19173b;
+        border: 2px solid #acf7ff;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        position: absolute;
+        border-top: 0;
+        border-left: 0;
+        border-bottom: 0;
+        bottom: -7px;
+        left: 4px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .ssl-button:after {
+        content: "";
+        position: absolute;
+        left: -2px;
+        bottom: -2px;
+        border-top: 15px solid transparent;
+        border-left: 15px solid #FFFFFF;
+    }
+
+.ssl-button-text {
+    color: #FFFFFF !important;
+    text-decoration: none;
+}
+
+.round-button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    opacity: 0; /* Il bottone sarà inizialmente invisibile */
+    transition: opacity 0.3s ease; /* Aggiungi una transizione fluida */
+    padding: 8px; /* Aggiungi padding per contenere l'icona */
+    background-size: cover; /* Assicura che l'immagine si adatti al pulsante */
+}
+
+    .round-button:hover {
+        opacity: 0.5; /* Rendi il bottone completamente visibile al passaggio del mouse */
+    }
+
+/*-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------*/
+
+/* UTENTI: LOGIN & CREATE*/
+
+.form1 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    padding-bottom: 0.4em !important;
+    background-color: #01102b !important;
+    border-radius: 20px !important;
+}
+
+#heading {
+    text-align: center !important;
+    margin: 2em;
+    color: #CBC094 !important;
+    font-size: 1.2em !important;
+}
+
+.field1 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5em !important;
+    border-radius: 25px !important;
+    padding: 0.6em !important;
+    border: none !important;
+    outline: none !important;
+    color: white !important;
+    background-color: #01102b !important;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5) !important;
+}
+
+.input-icon {
+    height: 1.3em !important;
+    width: 1.3em !important;
+    fill: #CBC094 !important;
+}
+
+.input-field {
+    background: none !important;
+    border: none !important;
+    outline: none !important;
+    width: 100% !important;
+    color: #CBC094 !important;
+}
+
+    .input-field::placeholder {
+        color: rgb(143, 123, 34); /* Cambia il colore del testo del placeholder */
+    }
+
+.form .btn {
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: row !important;
+    margin-top: 2.5em !important;
+}
+
+.button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-image: linear-gradient(163deg, #8F7B22 0%, #FFFFFF 100%);
+    color: rgb(0, 0, 0);
+}
+
+    .button1:hover {
+        /*background-image: linear-gradient(163deg, #021332 0%, #080551 100%);*/
+        background-image: linear-gradient(163deg, #61c8e7 0%, #FFFFFF 100%);
+        color: #8F7B22;
+    }
+
+.button2 {
+    padding: 0.5em;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    color: rgb(0, 0, 0);
+}
+
+    .button2:hover {
+        background-image: linear-gradient(163deg, #00642f 0%, #13034b 100%);
+        color: rgb(0, 255, 200);
+    }
+
+.button3 {
+    margin-bottom: 3em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    color: rgb(0, 0, 0);
+}
+
+    .button3:hover {
+        background-image: linear-gradient(163deg, #a00000fa 0%, #d10050 100%);
+        color: rgb(255, 255, 255);
+    }
+
+.card3 {
+    background-image: linear-gradient(163deg, #8F7B22 0%, #FFFFFF 100%) !important;
+    border-radius: 22px !important;
+    transition: all .3s;
+}
+
+.card2 {
+    border-radius: 0 !important;
+    transition: all .2s !important;
+}
+
+    .card2:hover {
+        transform: scale(0.98) !important;
+        border-radius: 20px !important;
+    }
+
+.card3:hover {
+    box-shadow: 0px 0px 30px 1px rgba(143, 123, 34, 0.7) !important;
+}

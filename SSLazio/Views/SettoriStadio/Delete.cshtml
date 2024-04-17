@@ -1,0 +1,64 @@
+﻿@model SSLazio.Models.SettoriStadio
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SettoriStadio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Partite.NomePartita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Partite.NomePartita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeSettore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeSettore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ridotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ridotto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostiDisponibili)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostiDisponibili)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

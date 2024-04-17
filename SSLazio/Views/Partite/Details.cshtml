@@ -1,0 +1,241 @@
+﻿@model SSLazio.Models.Partite
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using (Html.BeginForm("Tifoso", "Utenti", new { email = User.Identity.Name }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken() <!-- Aggiungi questo campo -->
+
+    @Html.Hidden("email", User.Identity.Name)
+    if (User.IsInRole("User"))
+    {
+        <div class="text-center">
+            <strong>Attiva l'account Tifoso per acquistare il tuo biglietto clicca qui: </strong>
+            <button type="submit" class="ssl-button my-3 d-flex justify-content-center m-auto">
+                Tifoso
+            </button>
+        </div>
+    }
+    else if (!User.Identity.IsAuthenticated)
+    {
+        <div class="text-center">
+            <strong>Registrati e poi torna per attivare il tuo account Tifoso per acquistare biglietti e abbonamenti: </strong>
+            <button class="ssl-button my-3 d-flex justify-content-center m-auto">
+                @Html.ActionLink("Registrati", "Create", "Utenti", null, new { @class = "text-white text-decoration-none" })
+            </button>
+        </div>
+    }
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <button class="ssl-button my-3 d-flex">
+        @Html.ActionLink("Aggiungi Settore", "Create", "SettoriStadio", null, new { @class = "text-white text-decoration-none" })
+    </button>
+}
+
+<div class="row divMatchFirst text-white bordoceleste my-5">
+    <div class="text-center">
+        <h2 class="mb-2">Dettagli</h2>
+        <div><p class="h3">@Model.NomePartita</p></div>
+    </div>
+    <div class="col-4 my-5 justify-content-around text-center align-content-center">
+        <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + Model.LogoLazio)" alt="Logo Lazio" height="150" width="150" />
+    </div>
+    <div class="col-4 my-5 flex-column justify-content-center text-center align-content-center">
+        <div>
+            <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" +Model.LogoCompetizione)" alt="Logo Competizione" height="80" width="80" />
+        </div>
+        <div class="h5 display-7 d-flex justify-content-center">@Model.DataOra</div>
+        <div>@Model.Luogo</div>
+    </div>
+    <div class="col-4 my-5 justify-content-around text-center align-content-center">
+        <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" +Model.LogoAvversario)" alt="Logo Ospiti" height="130" width="130" />
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-3 text-center">
+        <div><strong>Settore:</strong></div>
+    </div>
+    <div class="col-2 text-center">
+        <div><strong>Posti disponibili:</strong></div>
+    </div>
+    <div class="col-2 text-center">
+        <div><strong>Intero:</strong></div>
+    </div>
+    <div class="col-2 text-center">
+        <div><strong>Ridotto:</strong></div>
+    </div>
+</div>
+@if (Model.SettoriStadio.Any())
+{
+    foreach (var settore in Model.SettoriStadio)
+    {
+        <div class="row my-3 align-content-center">
+            <div class="col-3 text-center">
+                <div class="py-2">@Html.DisplayFor(modelItem => settore.NomeSettore)</div>
+            </div>
+            <div class="col-2 text-center">
+                <div class="py-2">
+                    @if (settore.PostiDisponibili > 0)
+                    {
+                        @Html.DisplayFor(modelItem => settore.PostiDisponibili)
+                    }
+                    else
+                    {
+                        <span>Sold out</span>
+                    }
+                </div>
+            </div>
+            <div class="col-2 text-center">
+                <div class="py-2">@Html.DisplayFor(modelItem => settore.Intero)</div>
+            </div>
+            <div class="col-2 text-center">
+                <div class="py-2">@Html.DisplayFor(modelItem => settore.Ridotto)</div>
+            </div>
+            <div class="col-3 text-center">
+                @if (settore.PostiDisponibili > 0)
+                {
+                    <button class="ssl-button d-flex justify-content-center mx-auto">
+                        @Html.ActionLink("Acquista", "Create", "Biglietti", new { idPartita = Model.IdPartita, idSettore = settore.IdSettore }, new { @class = "text-white text-decoration-none" })
+                    </button>
+                }
+                else
+                {
+                    <button disabled>Sold out</button>
+                }
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>Nessun settore disponibile per questa partita.</p>
+}
+
+<div class="d-flex justify-content-center my-4">
+    <img src="~/Content/PartiteLogo/mappastadio.png" alt="Mappa Stadio" class="img-fluid" />
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="d-flex">
+        <button class="ssl-button my-3 me-2">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdPartita }, new { @class = "text-white text-decoration-none" })
+        </button>
+        <button class="ssl-button my-3 me-2">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+        </button>
+    </div>
+
+}
+@*
+
+
+    <div>
+        <h4>Partita: @Model.NomePartita</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NomePartita)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NomePartita)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataOra)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataOra)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LogoLazio)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LogoLazio)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LogoAvversario)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LogoCompetizione)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LogoCompetizione)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Luogo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Luogo)
+            </dd>
+        </dl>
+    </div>
+
+    <h3>Settori Stadio</h3>
+    @if (Model.SettoriStadio.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Nome Settore
+                </th>
+                <th>
+                    Posti Disponibili
+                </th>
+                <th>
+                    Intero
+                </th>
+                <th>
+                    Ridotto
+                </th>
+            </tr>
+            @foreach (var settore in Model.SettoriStadio)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => settore.NomeSettore)
+                    </td>
+                    <td>
+                        @if (settore.PostiDisponibili > 0)
+                        {
+                            @Html.DisplayFor(modelItem => settore.PostiDisponibili)
+                        }
+                        else
+                        {
+                            <span>Sold out</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => settore.Intero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => settore.Ridotto)
+                    </td>
+                    <td>
+                        @if (settore.PostiDisponibili > 0)
+                        {
+                            @Html.ActionLink("Acquista", "Create", "Biglietti", new { idPartita = Model.IdPartita, idSettore = settore.IdSettore }, new { @class = "btn btn-primary" })
+                        }
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    }
+    else
+    {
+        <p>Nessun settore disponibile per questa partita.</p>
+    }
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdPartita }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@

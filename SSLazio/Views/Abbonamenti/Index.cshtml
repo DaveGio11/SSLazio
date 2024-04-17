@@ -1,0 +1,135 @@
+﻿@model IEnumerable<SSLazio.Models.Abbonamenti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SettoriAbb.NomeSettore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utenti.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LuogoNascita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodiceFiscale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Residenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Riduzione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCarta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Intestatario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Scadenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cvc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPagamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailDestinatario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SettoriAbb.NomeSettore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utenti.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LuogoNascita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodiceFiscale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Residenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Riduzione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prezzo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDocumento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroDocumento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroCarta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Intestatario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Scadenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cvc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataPagamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailDestinatario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdAbbonamento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdAbbonamento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdAbbonamento })
+        </td>
+    </tr>
+}
+
+</table>

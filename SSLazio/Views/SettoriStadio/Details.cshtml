@@ -1,0 +1,58 @@
+﻿@model SSLazio.Models.SettoriStadio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SettoriStadio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Partite.NomePartita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Partite.NomePartita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeSettore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeSettore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ridotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ridotto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostiDisponibili)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostiDisponibili)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdSettore }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SSLazio.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<a href="#">
+    <div class="d-flex flex-column border border-1 border-secondary rounded">
+        <div class="border-bottom border border-secondary text-center">
+            <h4>Titolo</h4>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="border border-end border-1 border-secondary">Immagine</div>
+            <h6 class="text-center">Sottotitolo</h6>
+        </div>
+    </div>
+</a>
+
+@*
+    
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TitoloNews)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sottotitolo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgNews)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TitoloNews)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sottotitolo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImgNews)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDNews }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDNews }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDNews })
+        </td>
+    </tr>
+}
+
+</table>
+*@

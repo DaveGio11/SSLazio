@@ -1,0 +1,209 @@
+﻿@model SSLazio.Models.Calciatori
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+
+
+
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="d-flex align-content-center">
+            <button class="ssl-button me-3">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.IDCalciatore }, new { @class = "text-white text-decoration-none" })
+            </button>
+            <button class="ssl-button">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+
+            </button>
+        </div>
+
+    }
+    else
+    {
+        <button class="ssl-button">
+            @Html.ActionLink("Back to List", "Index", null, new { style = "color: white; text-decoration: none;" })
+
+        </button>
+
+    }
+</div>
+
+<div>
+
+    <hr />
+
+    @*<dt>
+            @Html.DisplayNameFor(model => model.ImgCalciatore)
+        </dt>*@
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div>
+                <img src="@Url.Content("~/Content/Team/" + Model.ImgCalciatore2)" alt="Immagine Calciatore" class="img-fluid" />
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-5">
+                        <h6>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Nome)
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h6>
+                            @Html.DisplayNameFor(model => model.Cognome)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Cognome)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="mb-5">
+                        <h6>
+                            @Html.DisplayNameFor(model => model.Ruolo)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Ruolo)
+                        </p>
+                    </div>
+
+                    @if (Model.Ruolo != "Allenatore")
+                    {
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayName("Numero di Maglia")
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.NumeroMaglia)
+                            </p>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="mb-5">
+                        <h6>
+                            @Html.DisplayNameFor(model => model.Nazionalita)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Nazionalita)
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <h6>
+                            @Html.DisplayName("Data di Nascita")
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.DataNascita)
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 mt-3">
+                    <div class="mb-5">
+                        <h6>
+                            @Html.DisplayNameFor(model => model.Descrizione)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Descrizione)
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row my-4">
+
+        @if (Model.Ruolo != "Allenatore")
+        {
+            <div class="col-md-2">
+                <h6>
+                    @Html.DisplayNameFor(model => model.Presenze)
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.Presenze)
+                </p>
+            </div>
+            <div class="col-md-2">
+                <h6>
+                    @Html.DisplayName("Minuti Giocati:")
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.MinutiGiocati)
+                </p>
+            </div>
+            <div class="col-md-2">
+                <h6>
+                    @Html.DisplayNameFor(model => model.Gol)
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.Gol)
+                </p>
+            </div>
+            <div class="col-md-2">
+                <h6>
+                    @Html.DisplayNameFor(model => model.Assist)
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.Assist)
+                </p>
+            </div>
+        }
+        <div class="col-md-2"
+                <h6>
+                    @Html.DisplayName("Cartellini Gialli:")
+                </h6>
+                <p>
+                    @Html.DisplayFor(model => model.CartelliniGialli)
+                </p>
+        </div>
+        <div class="col-md-2">
+            <h6>
+                @Html.DisplayName("Cartellini Rossi:")
+            </h6>
+            <p>
+                @Html.DisplayFor(model => model.CartelliniRossi)
+            </p>
+        </div>
+
+
+    </div>
+
+    <div class="text-center my-5">
+        @if (Model.Ruolo != "Allenatore")
+        {
+            <h6>
+                @Html.DisplayName("Posizione:")
+            </h6>
+
+            <div>
+                <img src="@Url.Content("~/Content/Team/" + Model.ImgRuolo)" alt="Immagine Ruolo" />
+            </div>
+        }
+        </>
+    </div>
+
+
+
+</div>
+
+
+

@@ -1,0 +1,111 @@
+﻿@model SSLazio.Models.Calciatrici
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Women</h4>
+    <hr />
+    <div>
+
+        <hr />
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.ImgCalciatore)
+            </dt>*@
+
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div>
+                    <img src="@Url.Content("~/Content/Girls/" + Model.ImgCalciatrice)" alt="Immagine Calciatore" class="img-fluid" />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.Nome)
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayNameFor(model => model.Cognome)
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.Cognome)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayNameFor(model => model.Ruolo)
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.Ruolo)
+                            </p>
+                        </div>
+
+                        @if (Model.Ruolo != "Allenatore")
+                        {
+                            <div class="mb-5">
+                                <h6>
+                                    @Html.DisplayName("Numero di Maglia")
+                                </h6>
+                                <p>
+                                    @Html.DisplayFor(model => model.NumeroMaglia)
+                                </p>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayNameFor(model => model.Nazionalita)
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.Nazionalita)
+                            </p>
+                        </div>
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayName("Data di Nascita")
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.DataNascita)
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="mb-5">
+                            <h6>
+                                @Html.DisplayNameFor(model => model.Descrizione)
+                            </h6>
+                            <p>
+                                @Html.DisplayFor(model => model.Descrizione)
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDCalciatrice }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

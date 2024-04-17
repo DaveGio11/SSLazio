@@ -1,0 +1,49 @@
+﻿@model SSLazio.Models.SettoriAbb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SettoriAbb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeSettore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeSettore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Intero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Intero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Under16)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Under16)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Aquilotto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Aquilotto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostiDisponibili)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostiDisponibili)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Acquista", "Create", "Abbonamenti", new { idSettoreAbb = Model.IdSettoreAbb }, null)
+    | @Html.ActionLink("Back to List", "Index")
+</p>

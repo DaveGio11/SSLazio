@@ -1,0 +1,291 @@
+﻿@model IEnumerable<SSLazio.Models.Calciatrici>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+
+
+
+
+<div class="ms-xs-4 ms-sm-0 xs-md-4">
+    <h2 class="my-3">ORGANICO 23/24</h2>
+
+    <div class="mt-3">
+        @if (User.IsInRole("Admin"))
+        {
+            <button class="ssl-button mb-3 d-flex justify-content-center">
+                @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
+            </button>
+        }
+    </div>
+
+
+
+    <div class="row my-5">
+        <h4>PORTIERI</h4>
+        @foreach (var portiere in Model.Where(g => g.Ruolo == "Portiere"))
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                <a href="@Url.Action("Details", new { id = portiere.IDCalciatrice })" class="card-link text-decoration-none">
+                    <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + portiere.ImgCalciatrice)'); background-size: cover; background-position: center;">
+                        <div class="card-body align-self-start m-3">
+                            <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+                                <div class="mb-5">
+                                    <p class="card-title h1 bordobianco" style="color: #8F7B22; ">@portiere.NumeroMaglia</p>
+                                </div>
+                                <div class="card-text d-flex justify-content-center mt-2">
+                                    <div class="round-button mt-5">
+                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card-text bordobianco" style="color: #8F7B22; ">
+                                            <h6 class="bordobianco" style="color: #8F7B22;">POR</h6>
+                                            <strong class="bordobianco" style="color: #8F7B22; ">@portiere.Nome</strong>
+                                            <p class="h5 bordobianco" style="color: #8F7B22; ">@portiere.Cognome</p>
+                                        </div>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="d-flex flex-column justify-content-center align-self-end">
+
+                                                <button class="ssl-button mb-3 d-flex justify-content-center">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = portiere.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+
+                                                <button class="ssl-button d-flex justify-content-center">
+                                                    @Html.ActionLink("Delete", "Delete", new { id = portiere.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+        }
+    </div>
+
+
+    <div class="row my-5">
+        <h4>DIFENSORI</h4>
+        @foreach (var difensore in Model.Where(g => g.Ruolo == "Difensore"))
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                <a href="@Url.Action("Details", new { id = difensore.IDCalciatrice })" class="card-link text-decoration-none">
+                    <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + difensore.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
+                        <div class="card-body align-self-start m-3">
+                            <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+                                <div class="mb-5">
+                                    <p class="card-title h1 bordobianco" style="color: #8F7B22; ">@difensore.NumeroMaglia</p>
+                                </div>
+                                <div class="card-text d-flex justify-content-center mt-2">
+                                    <div class="round-button mt-5">
+                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card-text bordobianco" style="color: #8F7B22; ">
+                                            <h6 class="bordobianco" style="color: #8F7B22;">DIF</h6>
+                                            <strong class="bordobianco" style="color: #8F7B22; ">@difensore.Nome</strong>
+                                            <p class="h5 bordobianco" style="color: #8F7B22; ">@difensore.Cognome</p>
+                                        </div>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="d-flex flex-column justify-content-center align-self-end">
+
+                                                <button class="ssl-button mb-3 d-flex justify-content-center">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = difensore.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+
+                                                <button class="ssl-button d-flex justify-content-center">
+                                                    @Html.ActionLink("Delete", "Delete", new { id = difensore.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+
+        }
+    </div>
+
+
+    <div class="row my-5">
+        <h4>CENTROCAMPISTI</h4>
+        @foreach (var centrocampista in Model.Where(g => g.Ruolo == "Centrocampista"))
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                <a href="@Url.Action("Details", new { id = centrocampista.IDCalciatrice })" class="card-link text-decoration-none">
+                    <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + centrocampista.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
+                        <div class="card-body align-self-start m-3">
+                            <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+                                <div class="mb-5">
+                                    <p class="card-title h1 bordobianco" style="color: #8F7B22; ">@centrocampista.NumeroMaglia</p>
+                                </div>
+                                <div class="card-text d-flex justify-content-center mt-2">
+                                    <div class="round-button mt-5">
+                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card-text bordobianco" style="color: #8F7B22; ">
+                                            <h6 class="bordobianco" style="color: #8F7B22;">CEN</h6>
+                                            <strong class="bordobianco" style="color: #8F7B22; ">@centrocampista.Nome</strong>
+                                            <p class="h5 bordobianco" style="color: #8F7B22; ">@centrocampista.Cognome</p>
+                                        </div>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="d-flex flex-column justify-content-center align-self-end">
+
+                                                <button class="ssl-button mb-3 d-flex justify-content-center">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = centrocampista.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+
+                                                <button class="ssl-button d-flex justify-content-center">
+                                                    @Html.ActionLink("Delete", "Delete", new { id = centrocampista.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+
+        }
+    </div>
+
+    <div class="row my-5">
+        <h4>ATTACCANTI</h4>
+        @foreach (var attaccante in Model.Where(g => g.Ruolo == "Attaccante"))
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                <a href="@Url.Action("Details", new { id = attaccante.IDCalciatrice })" class="card-link text-decoration-none">
+                    <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + attaccante.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
+                        <div class="card-body align-self-start m-3">
+                            <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+                                <div class="mb-5">
+                                    <p class="card-title h1 bordobianco" style="color: #8F7B22; ">@attaccante.NumeroMaglia</p>
+                                </div>
+                                <div class="card-text d-flex justify-content-center mt-2">
+                                    <div class="round-button mt-5">
+                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card-text bordobianco" style="color: #8F7B22; ">
+                                            <h6 class="bordobianco" style="color: #8F7B22;">ATT</h6>
+                                            <strong class="bordobianco" style="color: #8F7B22; ">@attaccante.Nome</strong>
+                                            <p class="h5 bordobianco" style="color: #8F7B22; ">@attaccante.Cognome</p>
+                                        </div>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="d-flex flex-column justify-content-center align-self-end">
+
+                                                <button class="ssl-button mb-3 d-flex justify-content-center">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = attaccante.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+
+                                                <button class="ssl-button d-flex justify-content-center">
+                                                    @Html.ActionLink("Delete", "Delete", new { id = attaccante.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+
+        }
+    </div>
+
+    <div class="row my-5">
+        <h4>Allenatore</h4>
+        @foreach (var allenatore in Model.Where(g => g.Ruolo == "Allenatore"))
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                <a href="@Url.Action("Details", new { id = allenatore.IDCalciatrice })" class="card-link text-decoration-none">
+                    <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + allenatore.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
+                        <div class="card-body align-self-start m-3">
+                            <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+                                <div class="mb-5">
+                                    <p class="h4 bordobianco" style="color: #8F7B22;">MR</p>
+                                </div>
+                                <div class="card-text d-flex justify-content-center mt-2">
+                                    <div class="round-button mt-5">
+                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card-text bordobianco" style="color: #8F7B22; ">
+
+                                            <strong class="bordobianco" style="color: #8F7B22; ">@allenatore.Nome</strong>
+                                            <p class="h5 bordobianco" style="color: #8F7B22; ">@allenatore.Cognome</p>
+                                        </div>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="d-flex flex-column justify-content-center align-self-end">
+
+                                                <button class="ssl-button mb-3 d-flex justify-content-center">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = allenatore.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+
+                                                <button class="ssl-button d-flex justify-content-center">
+                                                    @Html.ActionLink("Delete", "Delete", new { id = allenatore.IDCalciatrice }, new { @class = "text-white text-decoration-none" })
+                                                </button>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+
+
+        }
+    </div>
+
+</div>
+
+

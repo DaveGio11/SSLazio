@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SSLazio.Models.SettoriStadio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Partite.NomePartita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeSettore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Intero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ridotto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostiDisponibili)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Partite.NomePartita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeSettore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Intero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ridotto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostiDisponibili)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdSettore }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdSettore }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdSettore })
+        </td>
+    </tr>
+}
+
+</table>

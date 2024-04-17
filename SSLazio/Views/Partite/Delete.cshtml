@@ -1,0 +1,72 @@
+﻿@model SSLazio.Models.Partite
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Partite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomePartita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomePartita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataOra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataOra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoLazio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoLazio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoAvversario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoAvversario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoCompetizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoCompetizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Luogo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Luogo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
