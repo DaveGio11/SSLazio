@@ -98,20 +98,55 @@
             <div class="col-2 text-center">
                 <div class="py-2">@Html.DisplayFor(modelItem => settore.Ridotto)</div>
             </div>
-            <div class="col-3 text-center">
-                @if (settore.PostiDisponibili > 0)
-                {
-                    <button class="ssl-button d-flex justify-content-center mx-auto">
-                        @Html.ActionLink("Acquista", "Create", "Biglietti", new { idPartita = Model.IdPartita, idSettore = settore.IdSettore }, new { @class = "text-white text-decoration-none" })
-                    </button>
-                }
-                else
-                {
-                    <button disabled>Sold out</button>
-                }
-            </div>
+            @if (User.IsInRole("Admin"))
+            {
+
+                        <div class="col-3 text-center">
+                            @if (settore.PostiDisponibili > 0)
+                            {
+                                <button class="ssl-button d-flex justify-content-center mx-auto">
+                                    @Html.ActionLink("Acquista", "Create", "Biglietti", new { idPartita = Model.IdPartita, idSettore = settore.IdSettore }, new { @class = "text-white text-decoration-none" })
+                                </button>
+                            }
+                            else
+                            {
+                                <button disabled>Sold out</button>
+                            }
+                        </div>
+            }
+            else if (User.IsInRole("Tifoso"))
+            {
+                        <div class="col-3 text-center">
+                            @if (settore.PostiDisponibili > 0)
+                            {
+                                <button class="ssl-button d-flex justify-content-center mx-auto">
+                                    @Html.ActionLink("Acquista", "Create", "Biglietti", new { idPartita = Model.IdPartita, idSettore = settore.IdSettore }, new { @class = "text-white text-decoration-none" })
+                                </button>
+                            }
+                            else
+                            {
+                                <button disabled>Sold out</button>
+                            }
+                        </div>
+            }
+            else
+            {
+                        <div class="col-3 text-center">
+                            @if (settore.PostiDisponibili > 0)
+                            {
+                                <button class="ssl-button d-flex justify-content-center mx-auto" disabled>
+                                    Acquista
+                                </button>
+                            }
+                            else
+                            {
+                                <button disabled>Sold out</button>
+                            }
+                        </div>
+            }
+            
         </div>
-    }
+            }
 }
 else
 {
@@ -134,108 +169,4 @@ else
     </div>
 
 }
-@*
 
-
-    <div>
-        <h4>Partita: @Model.NomePartita</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.NomePartita)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.NomePartita)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.DataOra)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.DataOra)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.LogoLazio)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.LogoLazio)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.LogoAvversario)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.LogoCompetizione)
-            </dd>
-            <dd>
-                @Html.DisplayFor(model => model.LogoCompetizione)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Luogo)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Luogo)
-            </dd>
-        </dl>
-    </div>
-
-    <h3>Settori Stadio</h3>
-    @if (Model.SettoriStadio.Any())
-    {
-        <table class="table">
-            <tr>
-                <th>
-                    Nome Settore
-                </th>
-                <th>
-                    Posti Disponibili
-                </th>
-                <th>
-                    Intero
-                </th>
-                <th>
-                    Ridotto
-                </th>
-            </tr>
-            @foreach (var settore in Model.SettoriStadio)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => settore.NomeSettore)
-                    </td>
-                    <td>
-                        @if (settore.PostiDisponibili > 0)
-                        {
-                            @Html.DisplayFor(modelItem => settore.PostiDisponibili)
-                        }
-                        else
-                        {
-                            <span>Sold out</span>
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => settore.Intero)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => settore.Ridotto)
-                    </td>
-                    <td>
-                        @if (settore.PostiDisponibili > 0)
-                        {
-                            @Html.ActionLink("Acquista", "Create", "Biglietti", new { idPartita = Model.IdPartita, idSettore = settore.IdSettore }, new { @class = "btn btn-primary" })
-                        }
-                    </td>
-                </tr>
-            }
-
-
-        </table>
-    }
-    else
-    {
-        <p>Nessun settore disponibile per questa partita.</p>
-    }
-
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.IdPartita }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-*@

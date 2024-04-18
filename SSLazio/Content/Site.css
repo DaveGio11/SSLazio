@@ -349,3 +349,19 @@ body {
 .card3:hover {
     box-shadow: 0px 0px 30px 1px rgba(143, 123, 34, 0.7) !important;
 }
+
+/* ---------------------------------------------------------------- BIGLIETTI ---------------------------------------------------------------------- */
+
+/* BIGLIETTI: DETAILS */
+
+@media (max-width: 576px) {
+    .d-xs-none {
+        display: none !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .d-sm-flex {
+        display: flex !important;
+    }
+}

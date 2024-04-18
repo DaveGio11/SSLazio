@@ -48,7 +48,7 @@ namespace SSLazio.Controllers
             if (img != null && img.ContentLength > 0)
             {
                 string nomeFile = Path.GetFileName(img.FileName);
-                string pathToSave = Path.Combine(Server.MapPath("~/Content/Team/"), nomeFile);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/News/"), nomeFile);
                 img.SaveAs(pathToSave);
                 news.ImgNews = "/Content/News/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
 

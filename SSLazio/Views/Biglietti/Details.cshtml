@@ -1,154 +1,211 @@
 ﻿@model SSLazio.Models.Biglietti
 
+
 @{
     ViewBag.Title = "Details";
 }
+<link href="~/Content/Site.css" rel="stylesheet" />
 
 <h2>Details</h2>
 
-<div>
-    <h4>Biglietti</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Partite.NomePartita)
-        </dt>
+<div class="container-fluid text-blu bg-white border border-1 border-white">
+    <header class="mb-3">
+        <div class="row position-relative border border-3 border-dark text-blu" style="background-color: #01102b">
+            <div class="col-2">
+                <img src="~/Content/PartiteLogo/Lazio.png" alt="LogoLazio" width="150" height="150" style="position: relative; left: 55%; top:50%; transform: translateY(-50%);" />
+            </div>
+            <div class="col-10 pt-5">
+                <div class="row mt-2 rounded-start" style="background-color: #8fd4e8">
+                    <div class="col-4 col-md-4 col-lg-4 d-flex flex-column justify-content-end">
+                        <p class="h2 ps-xs-3 ps-sm-0 ms-5 ms-lg-3 ms-xl-0 mb-0">SS Lazio S.p.A.</p>
+                    </div>
+                    <div class="col-1 col-md-2 col-lg-1 d-flex flex-column justify-content-end align-items-center">
+                        @if (Model.Partite != null)
+                        {
+                            var logoCompetizione = Model.Partite.LogoCompetizione;
 
-        <dd>
-            @Html.DisplayFor(model => model.Partite.NomePartita)
-        </dd>
+                            if (logoCompetizione != null)
+                            {
+                                <img src="@Url.Content("~/Content/PartiteLogo/" + logoCompetizione)" height="60" width="60" alt="Logo Competizione" />
+                            }
+                        }
+                    </div>
+                    <div class="col-2 col-md-2 col-lg-2 d-flex flex-column justify-content-end">
+                        <div class="d-flex flex-column">
+                            <strong>Stagione Sportiva</strong>
+                            <strong>2023/2024</strong>
+                        </div>
+                    </div>
+                    <div class="d-none col-lg-4 d-lg-flex flex-column justify-content-end">
+                        <div class="d-flex">
+                            <div><img src="~/Content/PartiteLogo/Mizuno1.png" alt="Mizuno" width="100" height="30" /></div>
+                            <div><img src="~/Content/PartiteLogo/Frecciarossa.png" alt="Frecciarossa" width="100" height="30" /></div>
+                            <div><img src="~/Content/PartiteLogo/Paideia.png" alt="Paideia" width="100" height="30" /></div>
+                        </div>
+                    </div>
+                    <div class="d-xs-none d-sm-flex col-4 col-md-4 d-lg-none d-flex flex-column justify-content-end">
+                        <div>
+                            <div><img src="~/Content/PartiteLogo/Mizuno1.png" alt="Mizuno" width="100" height="30" /></div>
+                            <div><img src="~/Content/PartiteLogo/Frecciarossa.png" alt="Frecciarossa" width="100" height="30" /></div>
+                            <div><img src="~/Content/PartiteLogo/Paideia.png" alt="Paideia" width="100" height="30" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SettoriStadio.NomeSettore)
-        </dt>
+    <main class="row my-3 p-4">
+        <div class="col-6 col-md-3 col-lg-4">
+            @if (Model.Partite != null)
+            {
+                <div class="d-flex flex-column">
+                    <h3>@Model.Partite.NomePartita</h3>
+                </div>
+            }
+            @if (Model.Partite != null)
+            {
+                <div class="d-flex flex-column">
+                    <h5>@Model.Partite.Luogo</h5>
+                </div>
+            }
+            @if (Model.Partite != null)
+            {
+                <div class="d-flex flex-column">
+                    <strong>Settore</strong>
+                    <h5>@Model.SettoriStadio.NomeSettore</h5>
+                </div>
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.SettoriStadio.NomeSettore)
-        </dd>
+            @if (Model.Partite != null)
+            {
+                <div class="d-flex flex-column">
+                    <strong>Data e Ora Evento</strong>
+                    <h6>@Model.Partite.DataOra</h6>
+                </div>
+            }
+            <div>
+                <strong>Riduzione</strong>
+                <h6>@Html.DisplayFor(model => model.Riduzione)</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 text-center">
+            <div>
+                <strong>Nominativo</strong>
+                <p>@Html.DisplayFor(model => model.Nome)&nbsp;@Html.DisplayFor(model => model.Cognome)</p>
+            </div>
+            <div>
+                <strong>Luogo di Nascita</strong>
+                <p>@Html.DisplayFor(model => model.LuogoNascita)</p>
+            </div>
+            <div>
+                <strong>Data di Nascita</strong>
+                <p>@Html.DisplayFor(model => model.DataNascita)</p>
+            </div>
+            <div>
+                <strong>Codice Fiscale</strong>
+                <p>@Html.DisplayFor(model => model.CodiceFiscale)</p>
+            </div>
+            <div>
+                <strong>Comune di Residenza</strong>
+                <p>@Html.DisplayFor(model => model.Residenza)</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex justify-content-center">
+            <img src="~/Content/PartiteLogo/frame.png" alt="QR-Code" />
+        </div>
+    </main>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Utenti.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cognome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cognome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CodiceFiscale)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CodiceFiscale)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataNascita)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataNascita)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LuogoNascita)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LuogoNascita)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Residenza)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Residenza)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Riduzione)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Riduzione)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Prezzo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Prezzo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroCarta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeroCarta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Intestatario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Intestatario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Scadenza)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Scadenza)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cvc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cvc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataPagamento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataPagamento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailDestinatario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailDestinatario)
-        </dd>
-
-    </dl>
+    <article class="row">
+        <div class="col-6">
+            <img src="~/Content/PartiteLogo/AccessoStadio.jpg" alt="AccessoStadio" class="img-fluid" width="500" />
+        </div>
+        <div class="col-6">
+            <p class="text-uppercase">L'acquirente è obbligato ad assicurarsi che in caso di stampa del biglietto la stessa venga prodotta di buona qualità dovrà verificare che il codice a barre o il QR siano stampati per intero in caso contrario potrebbe essere negato l'accesso all'impianto</p>
+            <p class="text-uppercase">The purchaser is obliged to ensure that if the ticket is printed, it is produced of good quality, he/she must verify that the barcode or QR is printed in full otherwise he/she may be denied access to the facility.</p>
+        </div>
+    </article>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdBiglietto }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="container-fluid my-5 bg-white p-3">
+    <h4 class="text-danger">Dati Pagamento</h4>
+    <hr />
+    <div class="row border border-2 border-danger text-black">
+        <div class="col-4">
+            @if (Model.Partite != null)
+            {
+                <div class="d-flex flex-column">
+                    <strong>Email Utente</strong>
+                    <p>@Model.Utenti.Email</p>
+                </div>
+            }
+            <div>
+                <strong>Nome</strong>
+                <p>@Html.DisplayFor(model => model.Nome)</p>
+            </div>
+            <div>
+                <strong>Cognome</strong>
+                <p>@Html.DisplayFor(model => model.Cognome)</p>
+            </div>
+        </div>
+        <div class="col-4">
+
+            <div>
+                <strong>Numero Carta</strong>
+                <p>@Html.DisplayFor(model => model.NumeroCarta)</p>
+            </div>
+            <div>
+                <strong>Intestatario</strong>
+                <p>@Html.DisplayFor(model => model.Intestatario)</p>
+            </div>
+        </div>
+        <div class="col-4">
+
+            <div>
+                <strong>Data di Pagamento</strong>
+                <p>@Html.DisplayFor(model => model.DataPagamento)</p>
+            </div>
+            <div>
+                <strong>Prezzo</strong>
+                <p>@Html.DisplayFor(model => model.Prezzo)</p>
+            </div>
+            <div>
+                <strong>Email Destinatario</strong>
+                <p>@Html.DisplayFor(model => model.EmailDestinatario)</p>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-primary mb-5" onclick="inviaBiglietto()">Invia Biglietto</button>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="d-flex align-content-center">
+            <button class="ssl-button me-3">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.IdBiglietto }, new { @class = "text-white text-decoration-none" })
+            </button>
+            <button class="ssl-button">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+
+            </button>
+        </div>
+    }
+    else
+    {
+        <button class="ssl-button">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+
+        </button>
+    }
+
+
+<script>
+    function inviaBiglietto() {
+        // Simulazione dell'invio del biglietto all'email destinatario
+        // Puoi sostituire questo codice con la tua logica effettiva di invio del biglietto via email
+        // qui sotto e mostrare un messaggio di conferma tramite un popup.
+
+        // Codice per la simulazione del popup
+        alert("Il biglietto è stato con successo inviato all'email destinatario indicata.");
+    }
+</script>

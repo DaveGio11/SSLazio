@@ -5,7 +5,7 @@
 }
 
 <div id="timer" style="display: none;">
-    Tempo rimanente: <span id="countdownDisplay"></span>
+    Tempo rimanente per acquistare il biglietto: <span id="countdownDisplay"></span>
 </div>
 
 
@@ -108,8 +108,8 @@
         <!-- Altri campi del form qui -->
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="button" class="BtnAcq" id="openPaymentModal" data-toggle="modal" data-target="#paymentModal">Paga</button>
+            <div class="col-md-offset-2 col-md-10 my-5">
+                <button type="button" class="ssl-button" id="openPaymentModal" data-toggle="modal" data-target="#paymentModal">Paga</button>
             </div>
         </div>
     </div>
@@ -118,13 +118,16 @@
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-blu" style="background-color: #cbc094">
                     <h5 class="modal-title" id="paymentModalLabel">Inserisci Metodo di Pagamento</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    @*
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    *@
+
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: #01102b">
                     <form id="paymentForm">
                         <div class="form-group">
                             @Html.LabelFor(model => model.NumeroCarta, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -174,8 +177,13 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                            <div class="col-md-offset-2 col-md-10 my-5">
+                                <button type="submit" class="ssl-button mb-3 d-flex justify-content-center">
+                                    Acquista
+                                </button>
+                                @*
+                                    <input type="submit" value="Aquista" class="btn btn-default" />
+                                *@
                             </div>
                         </div>
                     </form>
@@ -185,9 +193,15 @@
     </div>
 
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+@if (User.IsInRole("Admin"))
+            {
+                <div>
+                    <button class="ssl-button my-3 d-flex">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-blu bordobianco text-decoration-none" })
+                    </button>
+                </div>
+            }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
