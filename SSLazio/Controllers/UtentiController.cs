@@ -1,4 +1,5 @@
 ﻿using SSLazio.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,10 +15,32 @@ namespace SSLazio.Controllers
         private ModelDbContext db = new ModelDbContext();
 
         // GET: Utenti
+        // GET: Utenti
         public ActionResult Index()
         {
-            return View(db.Utenti.ToList());
+            // Controlla se l'utente è autenticato
+            if (User.Identity.IsAuthenticated)
+            {
+                // Se l'utente è un amministratore, mostra tutti gli utenti
+                if (User.IsInRole("Admin"))
+                {
+                    return View(db.Utenti.ToList());
+                }
+                else
+                {
+                    // Se l'utente non è un amministratore, mostra solo il proprio profilo
+                    string userEmail = User.Identity.Name; // Ottieni l'email dell'utente autenticato
+                    var user = db.Utenti.FirstOrDefault(u => u.Email == userEmail);
+                    if (user != null)
+                    {
+                        return View(new List<Utenti> { user });
+                    }
+                }
+            }
+            // Se l'utente non è autenticato, reindirizzalo alla pagina di login
+            return RedirectToAction("Login", "Utenti");
         }
+
 
         // GET: Utenti/Details/5
         public ActionResult Details(int? id)

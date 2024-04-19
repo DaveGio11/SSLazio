@@ -130,6 +130,8 @@
                                 Stadio
                             </a>
                             <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
+                                <li>@Html.ActionLink("Biglietti", "Index", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
+                                <li><a class="dropdown-item1" href="#">Abbonamenti</a></li>
                                 @if (User.IsInRole("Tifoso"))
                                 {
                                     <li> @Html.ActionLink("Cambio Nominativo", "Index", "Biglietti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
@@ -138,8 +140,6 @@
                                 {
                                     <li> @Html.ActionLink("Cambio Nominativo", "Index", "Biglietti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
                                 }
-                                <li>@Html.ActionLink("Biglietti", "Index", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
-                                <li><a class="dropdown-item1" href="#">Abbonamenti</a></li>
                                 <li>@Html.ActionLink("CreaPartite", "Create", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
                                 <li>@Html.ActionLink("Settori Biglietti", "Create", "SettoriStadio", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
                                 <li>@Html.ActionLink("Settori Abb", "Create", "SettoriAbb", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
@@ -176,6 +176,24 @@
                     }
                     else
                     {
+                        <a class="navbar-brand" href="@Url.Action("Index", "Utenti", new { area = "" })" title="Area Personale">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 24 24"
+                                 width="35"
+                                 height="35">
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color: #61c8e7;" />
+                                        <stop offset="100%" style="stop-color: #FFFFFF;" />
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#gradient)"
+                                      stroke="#396ba4"
+                                      stroke-width="0.5"
+                                      d="M12 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5m0 11c2.67 0 8 1.34 8 4v2H4v-2c0-2.66 5.33-4 8-4z"></path>
+                            </svg>
+                        </a>
+
                         <a class="navbar-brand" href="@Url.Action("Logout", "Utenti", new { area = "" })" title="Logout">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 512 512"
