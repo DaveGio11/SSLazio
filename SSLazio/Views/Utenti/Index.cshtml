@@ -1,81 +1,372 @@
-﻿@model IEnumerable<SSLazio.Models.Utenti>
+﻿
+
+@model IEnumerable<SSLazio.Models.Utenti>
 
 @{
     ViewBag.Title = "Index";
 }
 
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
 <h2>Index</h2>
+@if (User.IsInRole("User"))
+{
+    foreach (var item in Model)
+    {
+        <div class="container-fluid">
+            <div class="row d-flex align-items-center mb-3" style="background-image: url('@Url.Content("~/Content/Sfondi/Stadio2.jpg")'); background-size: cover; background-position: center; background-color: rgba(255, 255, 255, 0.5);">
+                <div class="col-6">
+                    <p class="h1 bordoceleste shadow">@item.Nome</p>
+                    <p class="h3 my-4 bordoceleste shadow">Benvenuto @item.Nome nel tuo profilo Personale</p>
+                    <button class="ssl-button shadow">ACQUISTA IL TUO KIT</button>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <img src="~/Content/PartiteLogo/Lazio.png" alt="Lazio Logo" style="width: 350px; height: 350px;" />
+                </div>
+            </div>
+            <h3 class="my-4">DATI UTENTE</h3>
+            <div class="row mb-5">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Nome</strong>
+                        <strong>Cognome</strong>
+                        @if (!string.IsNullOrEmpty(item.Nome))
+                        {
+                            <p class="fs-3">@item.Nome</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Cognome</strong>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ruolo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cognome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataNascita)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LuogoNascita)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CodiceFiscale)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Residenza)
-        </th>
-        <th></th>
-    </tr>
+                        @if (!string.IsNullOrEmpty(item.Cognome))
+                        {
+                            <p class="fs-3">@item.Cognome</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Codice fiscale</strong>
+                        @if (!string.IsNullOrEmpty(item.CodiceFiscale))
+                        {
+                            <p class="fs-5">@item.CodiceFiscale</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Email</strong>
+                        <p class="fs-3">@item.Email</p>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Data di Nascita</strong>
+                        @if (item.DataNascita.HasValue)
+                        {
+                            <p class="fs-3">@item.DataNascita.Value.ToShortDateString()</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se DataNascita è null -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Luogo di Nascita</strong>
+                        @if (!string.IsNullOrEmpty(item.LuogoNascita))
+                        {
+                            <p class="fs-3">@item.LuogoNascita</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4">
+                    <div class="d-flex justify-content-evenly my-5">
+                       
+                            <button class="ssl-button">
+                                @Html.ActionLink("Account Tifoso", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ruolo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cognome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataNascita)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LuogoNascita)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodiceFiscale)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Residenza)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdUtente }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdUtente }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdUtente })
-        </td>
-    </tr>
+                            </button>
+                        
+                        
+                        <button class="ssl-button">
+                            @Html.ActionLink("Cancella Account", "Delete", null, new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
 }
 
-</table>
+@if (User.IsInRole("Tifoso"))
+{
+    foreach (var item in Model)
+    {
+        <div class="container-fluid">
+            <div class="row d-flex align-items-center mb-3" style="background-image: url('@Url.Content("~/Content/Sfondi/Stadio2.jpg")'); background-size: cover; background-position: center; background-color: rgba(255, 255, 255, 0.5);">
+                <div class="col-6">
+                    <p class="h1 bordoceleste shadow">@item.Nome</p>
+                    <p class="h3 my-4 bordoceleste shadow">Benvenuto @item.Nome nel tuo profilo personale!</p>
+                    <button class="ssl-button shadow">ACQUISTA IL TUO KIT</button>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <img src="~/Content/PartiteLogo/Lazio.png" alt="Lazio Logo" style="width: 350px; height: 350px;" />
+                </div>
+            </div>
+            <h3 class="my-4">DATI UTENTE</h3>
+            <div class="row mb-5">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Nome</strong>
+                        <strong>Cognome</strong>
+                        @if (!string.IsNullOrEmpty(item.Nome))
+                        {
+                            <p class="fs-3">@item.Nome</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Cognome</strong>
+
+                        @if (!string.IsNullOrEmpty(item.Cognome))
+                        {
+                            <p class="fs-3">@item.Cognome</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Codice fiscale</strong>
+                        @if (!string.IsNullOrEmpty(item.CodiceFiscale))
+                        {
+                            <p class="fs-5">@item.CodiceFiscale</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Email</strong>
+                        <p class="fs-3">@item.Email</p>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Data di Nascita</strong>
+                        @if (item.DataNascita.HasValue)
+                        {
+                            <p class="fs-3">@item.DataNascita.Value.ToShortDateString()</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se DataNascita è null -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Luogo di Nascita</strong>
+                        @if (!string.IsNullOrEmpty(item.LuogoNascita))
+                        {
+                            <p class="fs-3">@item.LuogoNascita</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4">
+                    <div class="d-flex justify-content-evenly my-5">
+                        
+                       
+                            <button class="ssl-button">
+                                @Html.ActionLink("Modifica", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+
+                            </button>
+                       
+                        <button class="ssl-button">
+                            @Html.ActionLink("Cancella Account", "Delete", null, new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+    foreach (var item in Model)
+    {
+        <div class="container-fluid border border-2 border-white my-3">
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Email</strong>
+                            @if (!string.IsNullOrEmpty(item.Email))
+                            {
+                                <p class="fs-5">@item.Email</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                        <div class="col-4">
+                            <strong>Password</strong>
+                            @if (!string.IsNullOrEmpty(item.Password))
+                            {
+                                <p class="fs-5">@item.Password</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                        <div class="col-4">
+                            <strong>Account</strong>
+                            @if (!string.IsNullOrEmpty(item.Ruolo))
+                            {
+                                <p class="fs-5">@item.Ruolo</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Nome</strong>
+                            @if (!string.IsNullOrEmpty(item.Nome))
+                            {
+                                <p class="fs-5">@item.Nome</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                        <div class="col-4">
+                            <strong>Cognome</strong>
+                            @if (!string.IsNullOrEmpty(item.Cognome))
+                            {
+                                <p class="fs-5">@item.Cognome</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                        <div class="col-4">
+                            <strong>Codice Fiscale</strong>
+                            @if (!string.IsNullOrEmpty(item.CodiceFiscale))
+                            {
+                                <p class="fs-5">@item.CodiceFiscale</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Data di Nascita</strong>
+                            @if (item.DataNascita.HasValue)
+                            {
+                                <p class="fs-5">@item.DataNascita.Value.ToShortDateString()</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se DataNascita è null -->
+                            }
+                        </div>
+                        <div class="col-4">
+                            <strong>Luogo di Nascita</strong>
+                            @if (!string.IsNullOrEmpty(item.LuogoNascita))
+                            {
+                                <p class="fs-5">@item.LuogoNascita</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
+                        </div>
+                        <div class="col-4">
+                                    <strong>Residenza</strong>
+                                    @if (!string.IsNullOrEmpty(item.Residenza))
+                                    {
+                                    <p class="fs-5">@item.Residenza</p>
+                                }
+                                else
+                                {
+                                    <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                                }                             
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 align-content-center">
+                    <div class="d-flex flex-column">
+                        <button class="ssl-button m-auto my-2">
+                            @Html.ActionLink("Modifica", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+                        </button>
+                        <button class="ssl-button m-auto my-2">
+                            @Html.ActionLink("Dettagli", "Details", null, new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+                        </button>
+                        <button class="ssl-button m-auto my-2">
+                            @Html.ActionLink("Elimina", "Delete", null, new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+

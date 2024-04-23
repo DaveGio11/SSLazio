@@ -3,8 +3,242 @@
 @{
     ViewBag.Title = "Details";
 }
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<style>
+    .gestionale:hover {
+        background-color: rgba(108, 117, 125, 0.8) !important; /* Cambia il colore di sfondo al passaggio del mouse */
+    }
+</style>
 
 <h2>Details</h2>
+
+
+        <div class="container-fluid mb-4">
+            <div class="row d-flex align-items-center mb-3" style="background-image: url('@Url.Content("~/Content/Sfondi/Stadio2.jpg")'); background-size: cover; background-position: center; background-color: rgba(255, 255, 255, 0.5);">
+                <div class="col-6">
+                    <p class="h1 bordoceleste shadow">@Html.DisplayFor(model => model.Nome)</p>
+                    <p class="h3 my-4 bordoceleste shadow">Benvenuto @Html.DisplayFor(model => model.Nome) nel tuo profilo personale!</p>
+                    <button class="ssl-button shadow">ACQUISTA IL TUO KIT</button>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <img src="~/Content/PartiteLogo/Lazio.png" alt="Lazio Logo" style="width: 350px; height: 350px;" />
+                </div>
+            </div>
+            <h3 class="my-4">DATI UTENTE</h3>
+            <div class="row mb-5">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Nome</strong>
+                        @if (!string.IsNullOrEmpty(Model.Nome))
+                        {
+                            <p class="fs-4">@Html.DisplayFor(model => model.Nome)</p>
+                        }
+                        else
+                        {
+                            <p class="fs-4">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Cognome</strong>
+                        @if (!string.IsNullOrEmpty(Model.Cognome))
+                        {
+                            <p class="fs-4">@Html.DisplayFor(model => model.Cognome)</p>
+                        }
+                        else
+                        {
+                            <p class="fs-4">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Codice fiscale</strong>
+                        @if (!string.IsNullOrEmpty(Model.CodiceFiscale))
+                        {
+                            <p class="fs-4">@Html.DisplayFor(model => model.CodiceFiscale)</p>
+                        }
+                        else
+                        {
+                            <p class="fs-4">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Email</strong>
+                        @if (!string.IsNullOrEmpty(Model.Email))
+                        {
+                            <p class="fs-5">@Html.DisplayFor(model => model.Email)</p>
+                        }
+                        else
+                        {
+                            <p class="fs-4">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Data di Nascita</strong>
+                        @if (Model.DataNascita.HasValue)
+                        {
+                            <p class="fs-4">@Model.DataNascita.Value.ToShortDateString()</p>
+                        }
+                        else
+                        {
+                            <p class="fs-4">N/D</p>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <strong>Luogo di Nascita</strong>
+                        @if (!string.IsNullOrEmpty(Model.LuogoNascita))
+                        {
+                            <p class="fs-3">@Html.DisplayFor(model => model.LuogoNascita)</p>
+                        }
+                        else
+                        {
+                            <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4">
+                    <div class="d-flex justify-content-evenly my-5">
+
+                        <button class="ssl-button">
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+                        </button>
+                        <button class="ssl-button">
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.IdUtente }, new { @class = "text-white text-decoration-none" })
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+
+@*--------------------------------------------------------------------- AREA GESTIONE ---------------------------------------------------------------------------*@
+
+        <div class="container-fluid bg-secondary my-5">
+            <p class="h1 text-danger text-center bordobianco">Area Gestione</p>
+            <div class="row gestionale">
+                <p class="h3 text-success bordobianco text-center my-3">Biglietteria Partite</p>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Partite</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Aggiungi", "Create", "Partite", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "Partite", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Settori</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Aggiungi", "Create", "SettoriStadio", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "SettoriStadio", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Biglietti</p>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "Biglietti", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+            @*--------------------------------------------------------------------------------------------------------------------------*@
+            <p class="h1 text-danger text-center bordobianco">Area Gestione</p>
+            <div class="row">
+                <p class="h3 text-success bordobianco text-center my-3">Abbonamenti Tifosi</p>
+                <div class="col-6 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Settori</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Aggiungi", "Create", "SettoriAbb", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "SettoriAbb", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Biglietti</p>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "Abbonamenti", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+            @*--------------------------------------------------------------------------------------------------------------------------*@
+
+            <p class="h1 text-danger text-center bordobianco">Area Gestione</p>
+            <div class="row">
+                <p class="h3 text-success bordobianco text-center my-3">Gestione Calciatori</p>
+                <div class="col-6 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Squadra Mascile</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Aggiungi", "Create", "Calciatori", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "Calciatori", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="fs-4 text-center">Squadra Femminile</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Aggiungi", "Create", "Calciatrici", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <button class="ssl-button">@Html.ActionLink("Elenco", "Index", "Calciatrici", null, new { @class = "text-white text-decoration-none" })</button>
+                        </div>
+                    </div>
+                </div>
+               <hr /> 
+            </div>
+        </div>
+
+
+
+@*
+    
 
 <div>
     <h4>Utenti</h4>
@@ -13,71 +247,54 @@
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Password)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Password)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Ruolo)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Ruolo)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Nome)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Cognome)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Cognome)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.DataNascita)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.DataNascita)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.LuogoNascita)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.LuogoNascita)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.CodiceFiscale)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CodiceFiscale)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Residenza)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Residenza)
         </dd>
@@ -88,3 +305,5 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdUtente }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+*@

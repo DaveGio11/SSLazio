@@ -7,43 +7,37 @@
 <h2>Details</h2>
 
 <div>
-    <h4>SettoriAbb</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeSettore)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NomeSettore)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Intero)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Intero)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Under16)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Under16)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Aquilotto)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Aquilotto)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PostiDisponibili)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PostiDisponibili)
-        </dd>
-    </dl>
+    <div class="text-center">
+        <p class="h1 display-1 mb-3">@Html.DisplayFor(model => model.NomeSettore)</p>
+        <p class="h5">Campagna abbonamenti 2023/2024</p><hr />
+        <p class="h3 my-4">Posti Disponibili: @Html.DisplayFor(model => model.PostiDisponibili)</p>
+    </div>
+    
+    <div class="row my-5">
+        <div class="col-4 text-center">
+            <p class="h5">Prezzo Intero</p>
+            <p class="h6">@Html.DisplayFor(model => model.Intero)</p>
+        </div>
+        <div class="col-4 text-center">
+            <p class="h5">Prezzo Under-16</p>
+            <p class="h6">@Html.DisplayFor(model => model.Under16)</p>
+        </div>
+        <div class="col-4 text-center">
+            <p class="h5">Prezzo Aquilotto(Under-14)</p>
+            <p class="h6">@Html.DisplayFor(model => model.Aquilotto)</p>
+        </div>   
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-4 d-flex justify-content-center">
+            <button class="ssl-button my-5">
+                @Html.ActionLink("Acquista","Create", "Abbonamenti", new { idSettoreAbb = Model.IdSettoreAbb }, new { @class = "text-white text-decoration-none" })
+            </button>
+        </div>
+    </div>
 </div>
 
-<p>
-    @Html.ActionLink("Acquista", "Create", "Abbonamenti", new { idSettoreAbb = Model.IdSettoreAbb }, null)
-    | @Html.ActionLink("Back to List", "Index")
-</p>
+
+<button class="ssl-button my-5">
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "text-white text-decoration-none" })
+</button>
+

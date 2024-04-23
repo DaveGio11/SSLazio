@@ -2,8 +2,10 @@
 using System;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ProvaBiglietti.Controllers
@@ -57,6 +59,17 @@ namespace ProvaBiglietti.Controllers
         // GET: Abbonamenti/Create
         public ActionResult Create(int? idSettoreAbb)
         {
+
+            //          DateTime dataInizio = new DateTime(anno, mese, giorno); // Imposta la data di inizio del periodo consentito
+            //DateTime dataFine = dataInizio.AddMonths(1); // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
+
+            //if (DateTime.Today < dataInizio || DateTime.Today > dataFine)
+            //{
+            //    // Se la data attuale è al di fuori del periodo consentito, reindirizza l'utente o mostra un messaggio di errore
+            //    // Ad esempio:
+            //    TempData["ErrorMessage"] = "La creazione di nuovi abbonamenti è disponibile solo dal " + dataInizio.ToShortDateString() + " al " + dataFine.ToShortDateString() + ".";
+            //    return RedirectToAction("Index"); // Reindirizza l'utente alla pagina Index o ad un'altra pagina appropriata
+            //}
             if (idSettoreAbb == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -106,7 +119,7 @@ namespace ProvaBiglietti.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAbbonamento,IdUtente,IdSettoreAbb, Nome, Cognome,DataNascita, Residenza, CodiceFiscale, LuogoNascita, TipoDocumento,NumeroDocumento,Riduzione,NumeroCarta,Intestatario,Scadenza,Cvc,DataPagamento, EmailDestinatario")] Abbonamenti abbonamenti)
+        public ActionResult Create([Bind(Include = "IdAbbonamento,IdUtente,IdSettoreAbb, Nome, Cognome,ImgAbbonato,DataNascita, Residenza, CodiceFiscale, LuogoNascita, TipoDocumento,NumeroDocumento,Riduzione,NumeroCarta,Intestatario,Scadenza,Cvc,DataPagamento, EmailDestinatario")] Abbonamenti abbonamenti)
         {
             if (ModelState.IsValid)
             {
@@ -172,8 +185,15 @@ namespace ProvaBiglietti.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAbbonamento,IdUtente,IdSettoreAbb,Nome, Cognome,DataNascita, CodiceFiscale,Residenza, LuogoNascita,TipoDocumento,NumeroDocumento,Riduzione,Prezzo,NumeroCarta,Intestatario,Scadenza,Cvc,DataPagamento, EmailDestinatario")] Abbonamenti abbonamenti)
+        public ActionResult Edit([Bind(Include = "IdAbbonamento,IdUtente,IdSettoreAbb,Nome, Cognome,ImgAbbonato,DataNascita, CodiceFiscale,Residenza, LuogoNascita,TipoDocumento,NumeroDocumento,Riduzione,Prezzo,NumeroCarta,Intestatario,Scadenza,Cvc,DataPagamento, EmailDestinatario")] Abbonamenti abbonamenti, HttpPostedFileBase img)
         {
+            if (img != null && img.ContentLength > 0)
+            {
+                string nomeFile = Path.GetFileName(img.FileName);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/Profili/"), nomeFile);
+                img.SaveAs(pathToSave);
+                abbonamenti.ImgAbbonato = "/Content/Profili/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocator
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(abbonamenti).State = EntityState.Modified;

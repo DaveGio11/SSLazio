@@ -1,7 +1,4 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
 
 namespace SSLazio.Models
 {
@@ -35,14 +32,14 @@ namespace SSLazio.Models
                 .Property(e => e.Prezzo)
                 .HasPrecision(19, 4);
 
-            modelBuilder.Entity<Ordini>()
-                .Property(e => e.PrezzoTot)
-                .HasPrecision(19, 4);
+            modelBuilder.Entity<DettaglioOrdini>()
+               .Property(e => e.Totale)
+               .HasPrecision(19, 4);
 
             modelBuilder.Entity<Ordini>()
-                .HasMany(e => e.DettaglioOrdini)
-                .WithRequired(e => e.Ordini)
-                .WillCascadeOnDelete(false);
+               .HasMany(e => e.DettaglioOrdini)
+               .WithRequired(e => e.Ordini)
+               .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Partite>()
                 .HasMany(e => e.Biglietti)

@@ -4,12 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="my-5">Lista Settori Biglietteria</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<button class="ssl-button mb-3 d-flex justify-content-center">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
+</button>
+
+<table class="table text-white">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Partite.NomePartita)
@@ -47,9 +48,25 @@
             @Html.DisplayFor(modelItem => item.PostiDisponibili)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdSettore }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdSettore }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdSettore })
+            <div class="d-flex flex-column">
+
+
+                <button class="ssl-button text-white shadow">
+                    <a href="@Url.Action("Edit", new { id = item.IdSettore })" class="text-blu bordobianco text-decoration-none" style="text-decoration: none;">
+                        Modifica
+                    </a>
+                </button>
+                <button class="ssl-button text-white shadow my-2">
+                    <a href="@Url.Action("Details", new { id = item.IdSettore })" class="text-blu bordobianco text-decoration-none" style="text-decoration: none;">
+                        Dettagli
+                    </a>
+                </button>
+                <button class="ssl-button text-white shadow">
+                    <a href="@Url.Action("Delete", new { id = item.IdSettore })" class="text-blu bordobianco text-decoration-none" style="text-decoration: none;">
+                        Elimina
+                    </a>
+                </button>
+            </div>
         </td>
     </tr>
 }

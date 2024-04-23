@@ -24,6 +24,9 @@ namespace SSLazio.Models
         public string Cognome { get; set; }
 
         [Required]
+        public string ImgAbbonato { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string LuogoNascita { get; set; }
 

@@ -39,7 +39,9 @@ namespace SSLazio.Models
         [StringLength(50)]
         public string Cognome { get; set; }
 
-        [Column(TypeName = "date")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascita { get; set; }
 
         [StringLength(50)]
@@ -50,6 +52,7 @@ namespace SSLazio.Models
 
         [StringLength(50)]
         public string Residenza { get; set; }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Abbonamenti> Abbonamenti { get; set; }

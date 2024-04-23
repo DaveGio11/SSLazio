@@ -167,9 +167,11 @@
     <Compile Include="Controllers\BigliettiController.cs" />
     <Compile Include="Controllers\CalciatoriController.cs" />
     <Compile Include="Controllers\CalciatriciController.cs" />
+    <Compile Include="Controllers\CarrelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PartiteController.cs" />
+    <Compile Include="Controllers\ProdottiController.cs" />
     <Compile Include="Controllers\SettoriAbbController.cs" />
     <Compile Include="Controllers\SettoriStadioController.cs" />
     <Compile Include="Controllers\UtentiController.cs" />
@@ -237,7 +239,24 @@
     <Content Include="Content\Girls\Reyes.jpg" />
     <Content Include="Content\Girls\Varriale.jpg" />
     <Content Include="Content\Girls\Visentin.jpg" />
+    <Content Include="Content\Negozio\26.png" />
+    <Content Include="Content\Negozio\26maglia.png" />
+    <Content Include="Content\Negozio\Champions.png" />
+    <Content Include="Content\Negozio\ChampionsCofanetto.png" />
+    <Content Include="Content\Negozio\EuropaLeague.png" />
+    <Content Include="Content\Negozio\EuropaLeague2.png" />
+    <Content Include="Content\Negozio\felpa-removebg.png" />
+    <Content Include="Content\Negozio\felpasopra.png" />
+    <Content Include="Content\Negozio\Lazio18.png" />
+    <Content Include="Content\Negozio\Lazio2018.png" />
+    <Content Include="Content\Negozio\maglia1-2324.png" />
+    <Content Include="Content\Negozio\maglia1a-2324.png" />
+    <Content Include="Content\Negozio\Maglia2.png" />
+    <Content Include="Content\Negozio\maglia2a.png" />
+    <Content Include="Content\Negozio\tuta.png" />
+    <Content Include="Content\Negozio\tuta1.png" />
     <Content Include="Content\News\Allenamento.jpg" />
+    <Content Include="Content\News\LazioBayern.jpg" />
     <Content Include="Content\News\LazioMilanNews.jpg" />
     <Content Include="Content\News\ZacDerby.jpg" />
     <Content Include="Content\PartiteLogo\AccessoStadio.jpg" />
@@ -257,6 +276,10 @@
     <Content Include="Content\PartiteLogo\Salernitana.png" />
     <Content Include="Content\PartiteLogo\SerieA.png" />
     <Content Include="Content\PartiteLogo\TimerLogo.svg.png" />
+    <Content Include="Content\Profili\Barcode.png" />
+    <Content Include="Content\Profili\default.png" />
+    <Content Include="Content\Profili\GiuseppeSimone.jpg" />
+    <Content Include="Content\Profili\Millenovcento.png" />
     <Content Include="Content\Sfondi\1984.jpg" />
     <Content Include="Content\Sfondi\Divisa1.jpg" />
     <Content Include="Content\Sfondi\Divisa2.jpg" />
@@ -422,6 +445,12 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Prodotti\Create.cshtml" />
+    <Content Include="Views\Prodotti\Delete.cshtml" />
+    <Content Include="Views\Prodotti\Details.cshtml" />
+    <Content Include="Views\Prodotti\Edit.cshtml" />
+    <Content Include="Views\Prodotti\Index.cshtml" />
+    <Content Include="Views\Carrello\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

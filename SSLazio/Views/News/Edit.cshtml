@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="my-5">Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -58,7 +58,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="ssl-button">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+    </button>
 </div>
 
 @section Scripts {

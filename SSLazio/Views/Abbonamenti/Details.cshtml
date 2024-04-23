@@ -4,159 +4,79 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="text-center my-5">Dettagli Abbonamento</h2>
 
-<div>
-    <h4>Abbonamenti</h4>
+<div class="container-fluid border border-3 border-light">
+    <div class="row align-items-center border-bottom border-3 border-light p-3 mb-5">
+        <div class="col-4">
+            <img src="@Url.Content("~/Content/Profili/" + Model.ImgAbbonato)" alt="img Abbonato" width="200" class="img-fluid" />
+        </div>
+        <div class="col-8 text-center">
+            <p class="h1 mb-1">Il Tuo Abbonamento in:</p>
+            <p class="h2 my-1">@Html.DisplayFor(model => model.SettoriAbb.NomeSettore)</p>
+            <strong class="h3 my-1">@Html.DisplayFor(model => model.Nome)&nbsp;@Html.DisplayFor(model => model.Cognome) </strong>
+            <p class="h5 my-1">Nato a: @Html.DisplayFor(model => model.LuogoNascita)&nbsp;il @Html.DisplayFor(model => model.DataNascita)</p>
+            <p class="h5 my-1">C.F.: @Html.DisplayFor(model => model.CodiceFiscale);&nbsp;Residente a: @Html.DisplayFor(model => model.Residenza)</p>
+        </div>
+    </div>
+    
+    <div class="row align-items-center justify-content-center my-5">
+        <div class="col-4 text-center">
+            <strong>Email</strong>
+            <p>@Html.DisplayFor(model => model.Utenti.Email)</p>
+        </div>
+        <div class="col-4 text-center">
+            <strong>Tariffa Abbonamento</strong>
+            <p> @Html.DisplayFor(model => model.Riduzione)</p>
+        </div>
+        <div class="col-4 text-center">
+            <strong>Prezzo</strong>
+            <p> @Html.DisplayFor(model => model.Prezzo)</p>
+        </div>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SettoriAbb.NomeSettore)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SettoriAbb.NomeSettore)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Utenti.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cognome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cognome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataNascita)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataNascita)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LuogoNascita)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LuogoNascita)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CodiceFiscale)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CodiceFiscale)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Residenza)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Residenza)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Riduzione)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Riduzione)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Prezzo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Prezzo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoDocumento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoDocumento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroDocumento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeroDocumento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroCarta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeroCarta)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Intestatario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Intestatario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Scadenza)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Scadenza)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cvc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cvc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataPagamento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataPagamento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailDestinatario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailDestinatario)
-        </dd>
-
-    </dl>
+    <div class="row align-items-center justify-content-center mb-5">
+        <div class="col-4 text-center">
+            <strong>Documento</strong>
+            <p> @Html.DisplayFor(model => model.TipoDocumento)</p>
+        </div>
+        <div class="col-4 text-center">
+            <strong>Numero</strong>
+            <p> @Html.DisplayFor(model => model.NumeroDocumento)</p>
+        </div>
+        <div class="col-4 text-center">
+            <strong>Data Rilascio Abbonamento</strong>
+            <p> @Html.DisplayFor(model => model.DataPagamento)</p>
+        </div>
+    </div>
+    <hr />
+    <div class="row align-items-center justify-content-center mb-5">
+        <div class="col-4 text-center">
+            <strong>Numero Carta</strong>
+            <p> @Html.DisplayFor(model => model.NumeroCarta)</p>
+        </div>
+        <div class="col-4 text-center">
+            <strong>Intestatario</strong>
+            <p> @Html.DisplayFor(model => model.Intestatario)</p>
+        </div>
+        <div class="col-4 text-center">
+            <strong>Email Destinatario</strong>
+            <p> @Html.DisplayFor(model => model.EmailDestinatario)</p>
+        </div>
+    </div>
+    <hr />
+    <div class="row align-items-center justify-content-center my-5">
+        <div class="col-6 d-flex justify-content-center">
+            <button class="ssl-button">
+                @Html.ActionLink("Cedi Abbonamento", "Edit", new { id = Model.IdAbbonamento }, new { @class = "text-white text-decoration-none" })
+            </button>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+            <button class="ssl-button">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+            </button>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAbbonamento }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+

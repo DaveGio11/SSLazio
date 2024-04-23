@@ -1,10 +1,7 @@
 namespace SSLazio.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("DettaglioOrdini")]
     public partial class DettaglioOrdini
@@ -16,7 +13,10 @@ namespace SSLazio.Models
 
         public int IdOrdine { get; set; }
 
-        public int Quantità { get; set; }
+        public int Quantita { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal Totale { get; set; }
 
         public virtual Ordini Ordini { get; set; }
 

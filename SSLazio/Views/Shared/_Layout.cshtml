@@ -56,17 +56,19 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-white" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Casa Lazio
-                            </a>
-                            <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown4">
-                                <li></li>
-                                <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
-                                <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
-                                <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
-                            </ul>
-                        </li>
+                        @*
+            <li class="nav-item dropdown">
+                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Casa Lazio
+                </a>
+                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
+                    <li></li>
+                    <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
+                    <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
+                    <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
+                </ul>
+            </li>
+                        *@
                         <li class="nav-item dropdown">
                             <a class="nav-link text-white" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Stadio
@@ -78,7 +80,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Shop</a>
+                            <a class="nav-link text-white" href="@Url.Action("Index", "Prodotti")">Shop</a>
                         </li>
                     }
                     @if (User.Identity.IsAuthenticated)
@@ -114,43 +116,46 @@
                                 <li> @Html.ActionLink("News", "Index", "News", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Casa Lazio
-                            </a>
-                            <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
-                                <li></li>
-                                <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
-                                <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
-                                <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
-                            </ul>
-                        </li>
+                        @*
+            <li class="nav-item dropdown">
+                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Casa Lazio
+                </a>
+                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
+                    <li></li>
+                    <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
+                    <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
+                    <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
+                </ul>
+            </li>
+                        *@
                         <li class="nav-item dropdown">
                             <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Stadio
                             </a>
                             <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
                                 <li>@Html.ActionLink("Biglietti", "Index", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
-                                <li><a class="dropdown-item1" href="#">Abbonamenti</a></li>
+                                <li> @Html.ActionLink("Abbonamenti", "Index", "SettoriAbb", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
                                 @if (User.IsInRole("Tifoso"))
                                 {
                                     <li> @Html.ActionLink("Cambio Nominativo", "Index", "Biglietti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
+                                    <li> @Html.ActionLink("Il Tuo Abbonamento", "Index", "Abbonamenti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
+
                                 }
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li> @Html.ActionLink("Cambio Nominativo", "Index", "Biglietti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
+                                    <li> @Html.ActionLink("Il Tuo Abbonamento", "Index", "Abbonamenti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
+
                                 }
-                                <li>@Html.ActionLink("CreaPartite", "Create", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
-                                <li>@Html.ActionLink("Settori Biglietti", "Create", "SettoriStadio", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
-                                <li>@Html.ActionLink("Settori Abb", "Create", "SettoriAbb", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Shop</a>
+                            <a class="nav-link text-white" href="@Url.Action("Index", "Prodotti")">Shop</a>
                         </li>
                     }
-                       
-                    </ul>
+
+                </ul>
                 <form class="d-flex">
                     @if (!User.Identity.IsAuthenticated)
                     {
@@ -171,11 +176,25 @@
                                       d="M12 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5m0 11c2.67 0 8 1.34 8 4v2H4v-2c0-2.66 5.33-4 8-4z"></path>
                             </svg>
                         </a>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Carrello", new { area = "" })" title="Carrello">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color: #61c8e7;" />
+                                        <stop offset="100%" style="stop-color: #FFFFFF;" />
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#gradient)" stroke="#396ba4" stroke-width="3" d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
+                            </svg>
+
+                        </a>
 
 
                     }
                     else
                     {
+
+
                         <a class="navbar-brand" href="@Url.Action("Index", "Utenti", new { area = "" })" title="Area Personale">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 24 24"
@@ -192,6 +211,19 @@
                                       stroke-width="0.5"
                                       d="M12 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5m0 11c2.67 0 8 1.34 8 4v2H4v-2c0-2.66 5.33-4 8-4z"></path>
                             </svg>
+                        </a>
+
+                        <a class="navbar-brand" href="@Url.Action("Index", "Carrello", new { area = "" })" title="Carrello">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color: #61c8e7;" />
+                                        <stop offset="100%" style="stop-color: #FFFFFF;" />
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#gradient)" stroke="#396ba4" stroke-width="3" d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
+                            </svg>
+
                         </a>
 
                         <a class="navbar-brand" href="@Url.Action("Logout", "Utenti", new { area = "" })" title="Logout">
