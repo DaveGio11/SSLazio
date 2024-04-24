@@ -4,6 +4,17 @@
     ViewBag.Title = "Details";
 }
 
+<style>
+
+    .divMatchDetails {
+        background-image: url('/Content/Sfondi/Stadio3.jpg');
+        /* Assicurati di sostituire 'nome_immagine.jpg' con il nome effettivo del tuo file immagine */
+        background-size: cover; /* per adattare l'immagine allo spazio disponibile */
+        /* altre proprietà CSS per personalizzare la visualizzazione dell'immagine */
+        background-position: center; /* Posizione dell'immagine */
+    }
+</style>
+
 @using (Html.BeginForm("Tifoso", "Utenti", new { email = User.Identity.Name }, FormMethod.Post))
 {
     @Html.AntiForgeryToken() <!-- Aggiungi questo campo -->
@@ -36,20 +47,20 @@
     </button>
 }
 
-<div class="row divMatchFirst text-white bordoceleste my-5">
+<div class="row divMatchDetails text-white bordoceleste my-5">
     <div class="text-center">
-        <h2 class="mb-2">Dettagli</h2>
-        <div><p class="h3">@Model.NomePartita</p></div>
+        <h2 class="my-5 text-blu bordoceleste">Dettagli</h2>
+        <div><p class="h3 text-blu bordoceleste">@Model.NomePartita</p></div>
     </div>
     <div class="col-4 my-5 justify-content-around text-center align-content-center">
         <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" + Model.LogoLazio)" alt="Logo Lazio" height="150" width="150" />
     </div>
     <div class="col-4 my-5 flex-column justify-content-center text-center align-content-center">
         <div>
-            <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" +Model.LogoCompetizione)" alt="Logo Competizione" height="80" width="80" />
+            <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" +Model.LogoCompetizione)" alt="Logo Competizione" height="100" width="100" />
         </div>
-        <div class="h5 display-7 d-flex justify-content-center">@Model.DataOra</div>
-        <div>@Model.Luogo</div>
+        <div class="h5 display-7 text-blu bordoceleste d-flex justify-content-center">@Model.DataOra</div>
+        <div class="text-blu bordoceleste">@Model.Luogo</div>
     </div>
     <div class="col-4 my-5 justify-content-around text-center align-content-center">
         <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" +Model.LogoAvversario)" alt="Logo Ospiti" height="130" width="130" />
@@ -144,7 +155,7 @@
                             }
                         </div>
             }
-            
+
         </div>
             }
 }
@@ -154,7 +165,7 @@ else
 }
 
 <div class="d-flex justify-content-center my-4">
-    <img src="~/Content/PartiteLogo/mappastadio.png" alt="Mappa Stadio" class="img-fluid" />
+    <img src="~/Content/PartiteLogo/mappastadio.png" alt="Mappa Stadio" class="img-fluid rounded" />
 </div>
 
 @if (User.IsInRole("Admin"))

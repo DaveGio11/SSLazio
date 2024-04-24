@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SSLazio.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SSLazio.Controllers
 {
     public class HomeController : Controller
     {
+        private ModelDbContext db = new ModelDbContext();
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
 
-            return View();
+            return View(db.Partite.ToList());
         }
     }
 }

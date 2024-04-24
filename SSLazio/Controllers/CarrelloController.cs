@@ -20,7 +20,7 @@ namespace SSLazio.Controllers
         }
 
 
-        // Action per la gestione quantita e push su DB DettagliVnedita
+
         // Action per la gestione quantita e push su DB DettagliVnedita
         [HttpPost]
         public ActionResult Order()

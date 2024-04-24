@@ -13,7 +13,44 @@
 
 
 
-<h2>Index</h2>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner rounded">
+        <div class="carousel-item active">
+            <img src="~/Content/SfondiShop/Carousel1.png" class="d-block w-100" alt="Carousel1" style=" object-fit:cover">
+            <div class="carousel-caption d-none d-md-block">
+                <p class="h1">Benvenuto nello Shop Ufficiale</p>
+                <p class="h4">Acquista il tuo kit preferito</p>
+            </div>
+        </div>
+        <div class="carousel-item ">
+            <img src="~/Content/SfondiShop/Carousel2.png" class="d-block w-100" alt="Carousel2" style=" object-fit:cover">
+            <div class="carousel-caption d-none d-md-block text-blu bordoceleste">
+                <p class="h1">Shop S.S. Lazio</p>
+                <p class="h4">Scegli le tue maglie preferite!</p>
+            </div>
+        </div>
+        <div class="carousel-item ">
+            <img src="~/Content/SfondiShop/Carousel3.png" class="d-block w-100" alt="Carousel3" style=" object-fit:cover">
+            <div class="carousel-caption d-none d-md-block text-blu bordoceleste">
+                <p class="h1">Maglie e tanto altro</p>
+                <p class="h4">Acquista i gadget ufficiali</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 <div class="mt-3">
     @if (User.IsInRole("Admin"))
@@ -29,59 +66,69 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid my-5">
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 my-4 d-flex justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 my-5 d-flex justify-content-center">
                 <div>
                     @using (Html.BeginForm("AddToCart", "Prodotti", FormMethod.Post, new { @class = "d-inline" }))
                     {
                         @Html.Hidden("id", item.IdProdotto)
-                        <div class="book" style="background-color: #cbc094">
-                            <img src="@Url.Content("~/Content/Negozio/" + item.Immagine)" alt="prodotto" style="width: 100%; height: 100%; object-fit: cover;" class="rounded" />
-                            <div class="cover">
-                                <img src="@Url.Content("~/Content/Negozio/" + item.Immagine2)" alt="prodotto" style="width: 100%; height: 100%; object-fit: cover;" class="rounded" />
+                        <a href="@Url.Action("Details", new { id = item.IdProdotto })" style="text-decoration: none;">
+                            <div class="book" style="background-color: #cbc094">
+                                <img src="@Url.Content("~/Content/Negozio/" + item.Immagine)" alt="prodotto" style="width: 100%; height: 100%; object-fit: cover;" class="rounded" />
+                                <div class="cover" style="background-color: #b5a461">
+                                    <img src="@Url.Content("~/Content/Negozio/" + item.Immagine2)" alt="prodotto" style="width: 100%; height: 100%; object-fit: cover;" class="rounded" />
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <p class="mt-3">@item.NomeProdotto</p>
                         <div class="d-flex discountPremium">
                             <p class="card-text">
-                                <strong>£: @item.Prezzo.ToString("F2") &nbsp; </strong>
+                                <strong>&euro;: @item.Prezzo.ToString("F2") &nbsp; </strong>
                                 <label for="Quantita_@item.IdProdotto" class="form-label fw-bold me-1">Qta:</label>
                                 <!-- Imposta il valore massimo dell'input sulla quantità disponibile del prodotto -->
                                 <input id="Quantita_@item.IdProdotto" type="number" name="quantita" value="1" min="1" max="@item.Quantita" class="form-control w-auto d-inline" style="width: 50px;" />
                             </p>
                         </div>
-                        <div>
+
+                        <div class="mb-3">
                             @if (item.Quantita == 0)
                             {
-                                <p class="card-text"><strong>Product not available</strong></p>
+                                <p class="card-text text-danger"><strong>Prodotto Non Disponibile</strong></p>
                                 <div class="my-2 d-flex">
-                                    <input type="submit" value="Esaurito" class="ssl-button text-danger me-2" disabled />
-                                    <button class="ssl-button text-white shadow">
-                                        <a href="@Url.Action("Details", new { id = item.IdProdotto })" class="text-white text-decoration-none" style="text-decoration: none;">
-                                            Dettagli
-                                        </a>
-                                    </button>
+                                    <input type="submit" value="Esaurito" class="button1 text-danger me-2" disabled />
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <button class="button1 shadow">
+                                            <a href="@Url.Action("Edit", new { id = item.IdProdotto })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                                Modifica
+                                            </a>
+                                        </button>
+                                    }
                                 </div>
                             }
                             else
                             {
-                                <p class="card-text"><strong>Available: @item.Quantita</strong></p>
+                                <p class="card-text"><strong>Disponibilità: @item.Quantita</strong></p>
                                 <div class="my-2 d-flex">
-                                    <input type="submit" value="Add to Cart" class="ssl-button me-2" />
-                                    <button class="ssl-button text-white shadow">
-                                        <a href="@Url.Action("Details", new { id = item.IdProdotto })" class="text-white text-decoration-none" style="text-decoration: none;">
-                                            Dettagli
-                                        </a>
-                                    </button>
+                                    <input type="submit" value="Add to Cart" class="button1 me-2" />
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <button class="button1 shadow">
+                                            <a href="@Url.Action("Edit", new { id = item.IdProdotto })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                                Modifica
+                                            </a>
+                                        </button>
+                                    }
                                 </div>
                             }
                         </div>
                     }
                 </div>
             </div>
+
         }
     </div>
 </div>

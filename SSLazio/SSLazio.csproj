@@ -241,6 +241,8 @@
     <Content Include="Content\Girls\Visentin.jpg" />
     <Content Include="Content\Negozio\26.png" />
     <Content Include="Content\Negozio\26maglia.png" />
+    <Content Include="Content\Negozio\cappello-removebg-preview.png" />
+    <Content Include="Content\Negozio\cappello2-removebg-preview.png" />
     <Content Include="Content\Negozio\Champions.png" />
     <Content Include="Content\Negozio\ChampionsCofanetto.png" />
     <Content Include="Content\Negozio\EuropaLeague.png" />
@@ -249,10 +251,16 @@
     <Content Include="Content\Negozio\felpasopra.png" />
     <Content Include="Content\Negozio\Lazio18.png" />
     <Content Include="Content\Negozio\Lazio2018.png" />
+    <Content Include="Content\Negozio\maglia-away.jpg" />
+    <Content Include="Content\Negozio\maglia-away23-24-removebg-preview.png" />
     <Content Include="Content\Negozio\maglia1-2324.png" />
     <Content Include="Content\Negozio\maglia1a-2324.png" />
     <Content Include="Content\Negozio\Maglia2.png" />
     <Content Include="Content\Negozio\maglia2a.png" />
+    <Content Include="Content\Negozio\palla-removebg-preview.png" />
+    <Content Include="Content\Negozio\palla1-removebg-preview.png" />
+    <Content Include="Content\Negozio\sciarpa-anniversario-removebg-preview.png" />
+    <Content Include="Content\Negozio\sciarpanniversario-removebg-preview.png" />
     <Content Include="Content\Negozio\tuta.png" />
     <Content Include="Content\Negozio\tuta1.png" />
     <Content Include="Content\News\Allenamento.jpg" />
@@ -280,6 +288,10 @@
     <Content Include="Content\Profili\default.png" />
     <Content Include="Content\Profili\GiuseppeSimone.jpg" />
     <Content Include="Content\Profili\Millenovcento.png" />
+    <Content Include="Content\SfondiShop\Carousel1.png" />
+    <Content Include="Content\SfondiShop\Carousel2.png" />
+    <Content Include="Content\SfondiShop\Carousel3.png" />
+    <Content Include="Content\SfondiShop\SfondoShop3.png" />
     <Content Include="Content\Sfondi\1984.jpg" />
     <Content Include="Content\Sfondi\Divisa1.jpg" />
     <Content Include="Content\Sfondi\Divisa2.jpg" />
