@@ -4,6 +4,24 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    .inputCart {
+        color: #8fd4e8;
+        border: 2px solid #cbc094;
+        border-radius: 10px;
+        padding: 10px 25px;
+        background: transparent;
+        max-width: 214px;
+    }
+
+        .inputCart:focus,
+        .inputCar:active {
+            box-shadow: 2px 2px 15px #cbc094 inset;
+            background: transparent;
+            color: #8fd4e8;
+        }
+</style>
+
 
 
 <h1 class="text-center my-5">Carrello</h1>
@@ -39,27 +57,27 @@
                     <form>
                         <div class="form-group">
                             <label for="nome">Nome:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" required>
+                            <input type="text" class="form-control inputCart" id="nome" name="nome" required>
                         </div>
                         <div class="form-group">
                             <label for="cognome">Cognome:</label>
-                            <input type="text" class="form-control" id="cognome" name="cognome" required>
+                            <input type="text" class="form-control inputCart" id="cognome" name="cognome" required>
                         </div>
                         <div class="form-group">
                             <label for="indirizzo">Indirizzo:</label>
-                            <input type="text" class="form-control" id="indirizzo" name="indirizzo" required>
+                            <input type="text" class="form-control inputCart" id="indirizzo" name="indirizzo" required>
                         </div>
                         <div class="form-group">
                             <label for="citta">Città:</label>
-                            <input type="text" class="form-control" id="citta" name="citta" required>
+                            <input type="text" class="form-control inputCart" id="citta" name="citta" required>
                         </div>
                         <div class="form-group">
                             <label for="cap">CAP:</label>
-                            <input type="text" class="form-control" id="cap" name="cap" required>
+                            <input type="text" class="form-control inputCart" id="cap" name="cap" required>
                         </div>
                         <div class="form-group">
                             <label for="paese">Nazione:</label>
-                            <input type="text" class="form-control" id="paese" name="paese" required>
+                            <input type="text" class="form-control inputCart" id="paese" name="paese" required>
                         </div>
                         <hr />
                         <div class="mt-2">
@@ -74,7 +92,7 @@
                         {
 
                             <div class="col-md-offset-2 col-md-10 my-5">
-                                <button type="button" class="ssl-button" id="openPaymentModal" data-toggle="modal" data-target="#paymentModal">Paga</button>
+                                <button type="button" class="button1" id="openPaymentModal" data-toggle="modal" data-target="#paymentModal">Paga</button>
                             </div>
 
                             @* <input type="submit" class="button1 my-3" value="CONFERMA ORDINE" />*@
@@ -100,20 +118,20 @@
                                         <form id="paymentForm">
                                             <div class="form-group">
                                                 <label for="NumeroCarta">Numero Carta:</label>
-                                                <input type="text" class="form-control" id="NumeroCarta" name="NumeroCarta" placeholder = "0000-0000-0000-0000" maxlength = "19" required>
+                                                <input type="text" class="form-control inputCart" id="NumeroCarta" name="NumeroCarta" placeholder = "0000-0000-0000-0000" maxlength = "19" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Intestatario">Intestatario:</label>
-                                                <input type="text" class="form-control" id="Intestatario" name="Intestatario" required>
+                                                <input type="text" class="form-control inputCart" id="Intestatario" name="Intestatario" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="Scadenza">Scadenza:</label>
-                                                <input type="text" class="form-control" id="Scadenza" name="Scadenza" placeholder = "00-00" maxlength = "5" required>
+                                                <input type="text" class="form-control inputCart" id="Scadenza" name="Scadenza" placeholder = "00-00" maxlength = "5" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="Cvc">CVC:</label>
-                                                <input type="text" class="form-control" id="Cvc" name="Cvc" maxlength = "3" required>
+                                                <input type="text" class="form-control inputCart" id="Cvc" name="Cvc" maxlength = "3" required>
                                             </div>
 
 

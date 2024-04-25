@@ -4,47 +4,47 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="text-center my-3">Dettaglio Notizia</h2>
 
-<div>
-    <h4>News</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TitoloNews)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TitoloNews)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sottotitolo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sottotitolo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descrizione)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgNews)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImgNews)
-        </dd>
-
-    </dl>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img class="card-img-top my-3" src="@Url.Content("~/Content/News/" + Model.ImgNews)" alt="Card image cap">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5 class="my-3 h1 text-center">@Html.DisplayFor(model => model.TitoloNews)</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="my-3 h3 text-center">@Html.DisplayFor(model => model.Sottotitolo)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="my-3 text-center">@Html.DisplayFor(model => model.Descrizione)</p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDNews }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="d-flex align-content-center my-5">
+        <button class="ssl-button me-3">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IDNews }, new { @class = "text-white text-decoration-none" })
+        </button>
+        <button class="ssl-button">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+        </button>
+    </div>
+
+}
+else
+{
+    <button class="ssl-button my-5">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+    </button>
+}

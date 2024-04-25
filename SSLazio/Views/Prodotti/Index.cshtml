@@ -76,9 +76,9 @@
                     {
                         @Html.Hidden("id", item.IdProdotto)
                         <a href="@Url.Action("Details", new { id = item.IdProdotto })" style="text-decoration: none;">
-                            <div class="book" style="background-color: #cbc094">
+                            <div class="book" style="background: linear-gradient(135deg,#cbc094, #ffffff) ">
                                 <img src="@Url.Content("~/Content/Negozio/" + item.Immagine)" alt="prodotto" style="width: 100%; height: 100%; object-fit: cover;" class="rounded" />
-                                <div class="cover" style="background-color: #b5a461">
+                                <div class="cover" style="background: linear-gradient(135deg, #8fd4e8, #ffffff);">
                                     <img src="@Url.Content("~/Content/Negozio/" + item.Immagine2)" alt="prodotto" style="width: 100%; height: 100%; object-fit: cover;" class="rounded" />
                                 </div>
                             </div>

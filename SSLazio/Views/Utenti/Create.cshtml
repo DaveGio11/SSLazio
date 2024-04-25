@@ -64,5 +64,24 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            // Gestisci l'evento submit del modulo
+            $("form").submit(function (event) {
+                // Verifica se entrambi i campi sono stati compilati
+                var email = $("#Email").val();
+                var password = $("#Password").val();
+
+                if (email.trim() !== "" && password.trim() !== "") {
+                    // Se entrambi i campi sono compilati, mostra l'alert
+                    alert("Registrazione effettuata con successo");
+                } else {
+                    // Se uno o entrambi i campi sono vuoti, impedisce l'invio del modulo
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 }
 

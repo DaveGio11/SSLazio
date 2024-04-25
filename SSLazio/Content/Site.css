@@ -26,6 +26,9 @@ body {
     font-weight: 500;
 }
 
+
+
+
 /* *************************************************** LAYOUT ----------------------------------------------------------- */
 .bg-goldwhite {
     background: linear-gradient(to bottom right, #a38d37, #f5f5f5);
@@ -50,6 +53,32 @@ body {
         color: #021332 !important;
     }
 
+
+
+
+/*-------------------------- NAVBAR ----------------------------------------*/
+/*
+nav {
+    position: relative;
+}
+
+.logo-nav {
+    position: absolute;
+    top: 10%;
+}
+
+@media (max-width: 435px) {
+    .logo-nav {
+        width: 80px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 769px) {
+    .logo-user {
+        display: none;
+    }
+}
+*/
 /* *************************************************** HOME ----------------------------------------------------------- */
 
 .background-image-home {
@@ -83,6 +112,13 @@ body {
     background-size: cover; /* Per adattare l'immagine al contenitore */
     background-image: url('Sfondi/Divisa2.jpg') !important; /* Sostituisci con il percorso corretto */
     background-position: center; /* Posizione dell'immagine */
+}
+
+.background-titleHome {
+    background-size: cover; /* Per adattare l'immagine al contenitore */
+    background-image: url('SfondiShop/SfondoShop3.png') !important; /* Sostituisci con il percorso corretto */
+    background-position: center; /* Posizione dell'immagine */
+    border-radius: 0.25rem;
 }
 
 .background-ticket {

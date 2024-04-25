@@ -32,6 +32,28 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
+<style>
+    .p-badge {
+        height: 15px;
+        width: 15px;
+        text-align: center;
+        padding-top: 0;
+        font-size: 12px;
+        margin-left: -8px;
+        margin-right: -7px;
+    }
+
+    footer p{
+        margin-bottom: 0;
+        text-decoration: underline
+    }
+    .mt-footer {
+        margin-top: 15rem !important;
+    }
+
+</style>
+
 <body>
 
     <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-dark sticky-top" style="padding:0; background: linear-gradient(to bottom right, #a38d37, #f5f5f5); ">
@@ -200,7 +222,7 @@
                         </a>
                         if (badge != 0)
                         {
-                            <b class="text-danger">@badge</b>
+                            <b class="text-white bg-primary p-badge rounded-circle">@badge</b>
                         }
                         <a class="navbar-brand" href="@Url.Action("Index", "Carrello", new { area = "" })" title="Carrello">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
@@ -240,7 +262,7 @@
                         </a>
                         if (badge != 0)
                         {
-                            <b class="text-danger">@badge</b>
+                            <b class="text-white bg-primary p-badge rounded-circle">@badge</b>
                         }
                         <a class="navbar-brand me-4" href="@Url.Action("Index", "Carrello", new { area = "" })" title="Carrello">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
@@ -281,9 +303,46 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <hr class="mt-footer"/>
         <footer>
-            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+            <p class="mb-5 text-decoration-none">&copy; @DateTime.Now.Year - Società Sportiva Lazio - Roma (RM)</p>
+            <div class="container">
+                <div class="row row align-items-center">
+                    <div class="col-4">
+                        <img src="~/Content/Negozio/Mizuno-Lazio.png" alt="Sponsor" width="350" height="200" class="img-fluid"/>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-3">
+                                <strong>News</strong>
+                                <p>@Html.ActionLink("News", "Index", "News", new { area = "" }, new { @class = "text-white" })</p>
+                                <p class="text-white mb-3">Comunicazioni</p>
+                                <strong>Shop</strong>
+                                <p>@Html.ActionLink("SS Lazio Store", "Index", "Prodotti", new { area = "" }, new { @class = "text-white" })</p>
+                            </div>
+                            <div class="col-3">
+                                <strong class="text-white">Team</strong>
+                                <p>@Html.ActionLink("Squadra Maschile", "Index", "Calciatori", new { area = "" }, new { @class = "text-white" })</p>
+                                <p>@Html.ActionLink("Squadra Maschile", "Index", "Calciatrici", new { area = "" }, new { @class = "text-white" })</p>
+                                <p class="text-white">Squadra Primavera</p>
+                            </div>
+                            <div class="col-3">
+                                <strong>Club</strong>
+                                <p class="text-white">Storia</p>
+                                <p class="text-white">Trofei</p>
+                                <p class="text-white">Organigramma</p>
+                            </div>
+                            <div class="col-3">
+                                <strong>Stadio</strong>
+                                <p>@Html.ActionLink("Biglietteria", "Index", "Partite", new { area = "" }, new { @class = "text-white" })</p>
+                                <p>@Html.ActionLink("Abbonamenti", "Index", "SettoriAbb", new { area = "" }, new { @class = "text-white" })</p>
+                                <p>@Html.ActionLink("Cambio Nominativo", "Index", "Biglietti", new { area = "" }, new { @class = "text-white" })</p>
+                                <p>@Html.ActionLink("Il tuo Abbonamento", "Index", "Abbonamenti", new { area = "" }, new { @class = "text-white" })</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 

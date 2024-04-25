@@ -60,16 +60,17 @@ namespace ProvaBiglietti.Controllers
         public ActionResult Create(int? idSettoreAbb)
         {
 
-            //          DateTime dataInizio = new DateTime(anno, mese, giorno); // Imposta la data di inizio del periodo consentito
-            //DateTime dataFine = dataInizio.AddMonths(1); // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
+            DateTime dataInizio = new DateTime(2024, 04, 11); // Imposta la data di inizio del periodo consentito
+            DateTime dataFine = dataInizio.AddMonths(1); // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
 
-            //if (DateTime.Today < dataInizio || DateTime.Today > dataFine)
-            //{
-            //    // Se la data attuale è al di fuori del periodo consentito, reindirizza l'utente o mostra un messaggio di errore
-            //    // Ad esempio:
-            //    TempData["ErrorMessage"] = "La creazione di nuovi abbonamenti è disponibile solo dal " + dataInizio.ToShortDateString() + " al " + dataFine.ToShortDateString() + ".";
-            //    return RedirectToAction("Index"); // Reindirizza l'utente alla pagina Index o ad un'altra pagina appropriata
-            //}
+            if (DateTime.Today < dataInizio || DateTime.Today > dataFine)
+            {
+                // Se la data attuale è al di fuori del periodo consentito, reindirizza l'utente o mostra un messaggio di errore
+                // Ad esempio:
+                TempData["ErrorMessage"] = "La creazione di nuovi abbonamenti è disponibile solo dal " + dataInizio.ToShortDateString() + " al " + dataFine.ToShortDateString() + ".";
+                return RedirectToAction("Index"); // Reindirizza l'utente alla pagina Index o ad un'altra pagina appropriata
+            }
+
             if (idSettoreAbb == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -166,6 +167,18 @@ namespace ProvaBiglietti.Controllers
         // GET: Abbonamenti/Edit/5
         public ActionResult Edit(int? id)
         {
+
+            DateTime dataInizio = new DateTime(2024, 04, 11); // Imposta la data di inizio del periodo consentito
+            DateTime dataFine = dataInizio.AddMonths(1); // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
+
+            if (DateTime.Today < dataInizio || DateTime.Today > dataFine)
+            {
+                // Se la data attuale è al di fuori del periodo consentito, reindirizza l'utente o mostra un messaggio di errore
+                // Ad esempio:
+                TempData["ErrorMessage"] = "La cessione degli abbonamenti è disponibile solo dal " + dataInizio.ToShortDateString() + " al " + dataFine.ToShortDateString() + ".";
+                return RedirectToAction("Index"); // Reindirizza l'utente alla pagina Index o ad un'altra pagina appropriata
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

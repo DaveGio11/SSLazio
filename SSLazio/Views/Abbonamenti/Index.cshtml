@@ -4,13 +4,21 @@
     ViewBag.Title = "Index";
 }
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
 @if (User.IsInRole("Admin"))
 {
-                <h2 class="text-center my-5">Lista Abbonamenti</h2>
+    <h2 class="text-center my-5">Lista Abbonamenti</h2>
 }
 else
 {
-                <h2 class="text-center my-5">Il tuo Abbonamento</h2>
+    <h2 class="text-center my-5">Il tuo Abbonamento</h2>
 }
 
 
@@ -64,7 +72,7 @@ else
             <div class="col-12 col-lg-6 mb-5">
                 <div class="row justify-content-center">
                     <div class="col-10 d-flex justify-content-center">
-                        <img src="~/Content/Profili/Millenovcento.png" alt="Millenovcento" class="img-fluid" width="450"/>
+                        <img src="~/Content/Profili/Millenovcento.png" alt="Millenovcento" class="img-fluid" width="450" />
                     </div>
                 </div>
             </div>
@@ -78,7 +86,7 @@ else
                             Modifica
                         </a>
                     </button>
-                </div>                
+                </div>
                 <div class="col-6 d-flex justify-content-center my-3">
                     <button class="ssl-button text-white shadow">
                         <a href="@Url.Action("Delete", new { id = item.IdAbbonamento })" class="text-blu bordobianco text-decoration-none" style="text-decoration: none;">
@@ -89,147 +97,20 @@ else
             }
         </div>
     </div>
-    <hr class="mb-3"/>
+    <hr class="mb-3" />
 }
 
 
-@*
-    <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.SettoriAbb.NomeSettore)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Utenti.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cognome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImgAbbonato)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataNascita)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LuogoNascita)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CodiceFiscale)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Residenza)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Riduzione)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prezzo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TipoDocumento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NumeroDocumento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NumeroCarta)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Intestatario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Scadenza)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cvc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataPagamento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmailDestinatario)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SettoriAbb.NomeSettore)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Utenti.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cognome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ImgAbbonato)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataNascita)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LuogoNascita)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CodiceFiscale)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Residenza)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Riduzione)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prezzo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TipoDocumento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NumeroDocumento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NumeroCarta)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Intestatario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Scadenza)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cvc)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataPagamento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EmailDestinatario)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.IdAbbonamento }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.IdAbbonamento }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.IdAbbonamento })
-                    </td>
-                </tr>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var errorMessage = '@(TempData["ErrorMessage"])';
+            if (errorMessage) {
+                alert(errorMessage);
+                // Puoi anche utilizzare altre librerie/modalità per popup, come Bootstrap Modal
+                // Mostra il messaggio con un popup di Bootstrap modal:
+                // $('#errorMessageModal').modal('show');
             }
-
-        </table>
-*@
-
-
-
+        });
+    </script>
+}

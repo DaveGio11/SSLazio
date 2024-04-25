@@ -75,7 +75,7 @@
 </div>
 @foreach (var item in Model)
 {
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <div class="row align-items-center">
             <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.NomeSettore)</div>
             <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.PostiDisponibili)</div>
@@ -105,56 +105,6 @@
 }
 
 
-@*
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeSettore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Intero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Under16)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Aquilotto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostiDisponibili)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NomeSettore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Intero)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Under16)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Aquilotto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostiDisponibili)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdSettoreAbb }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IdSettoreAbb }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IdSettoreAbb })
-                </td>
-            </tr>
-        }
-
-    </table>
-*@
 
 
 
