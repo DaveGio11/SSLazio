@@ -35,6 +35,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: Prodotti/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -68,6 +69,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: Prodotti/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: Prodotti/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

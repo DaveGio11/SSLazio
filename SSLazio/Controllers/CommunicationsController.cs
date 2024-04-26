@@ -1,115 +1,123 @@
 ﻿using SSLazio.Models;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SSLazio.Controllers
 {
-    public class PartiteController : Controller
+    public class CommunicationsController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: Partite
+        // GET: Communications
         public ActionResult Index()
         {
-            return View(db.Partite.ToList());
+            return View(db.Communications.ToList());
         }
 
-        // GET: Partite/Details/5
+        // GET: Communications/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Communications communications = db.Communications.Find(id);
+            if (communications == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(communications);
         }
 
-        // GET: Partite/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Communications/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Partite/Create
+        // POST: Communications/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPartita,NomePartita,DataOra,LogoLazio,LogoAvversario,LogoCompetizione,Luogo")] Partite partite)
+        public ActionResult Create([Bind(Include = "IdComunicazione,TitoloCom,Contenuto,DataComunicazione, ImgComunicazione")] Communications communications, HttpPostedFileBase img)
         {
+            if (img != null && img.ContentLength > 0)
+            {
+                string nomeFile = Path.GetFileName(img.FileName);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/News/"), nomeFile);
+                img.SaveAs(pathToSave);
+                communications.ImgComunicazione = "/Content/News/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
+
+            }
+
             if (ModelState.IsValid)
             {
-                db.Partite.Add(partite);
+                db.Communications.Add(communications);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(partite);
+            return View(communications);
         }
 
-        // GET: Partite/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Communications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Communications communications = db.Communications.Find(id);
+            if (communications == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(communications);
         }
 
-        // POST: Partite/Edit/5
+        // POST: Communications/Edit/5
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPartita,NomePartita,DataOra,LogoLazio,LogoAvversario,LogoCompetizione,Luogo")] Partite partite)
+        public ActionResult Edit([Bind(Include = "IdComunicazione,TitoloCom,Contenuto,DataComunicazione, ImgComunicazione")] Communications communications)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(partite).State = EntityState.Modified;
+                db.Entry(communications).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(partite);
+            return View(communications);
         }
 
-        // GET: Partite/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Communications/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Communications communications = db.Communications.Find(id);
+            if (communications == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(communications);
         }
 
-        // POST: Partite/Delete/5
+        // POST: Communications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Partite partite = db.Partite.Find(id);
-            db.Partite.Remove(partite);
+            Communications communications = db.Communications.Find(id);
+            db.Communications.Remove(communications);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,38 @@
+﻿@model SSLazio.Models.Communications
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center my-5">@Html.DisplayFor(model => model.TitoloCom)</h2>
+
+<div class="container">
+    <i class="my-3">Comunicazione del: @Html.DisplayFor(model => model.DataComunicazione)</i>
+    <div class="card mb-3" style="background-color: #021332">
+        <img class="card-img-top" src="@Url.Content("~/Content/News/" + Model.ImgComunicazione)" alt="img comunicazione" height="450" style="object-fit:cover" />
+        <div class="card-body w-100">
+            <p class="card-text text-center my-5">@Html.DisplayFor(model => model.Contenuto)</p>
+        </div>
+    </div>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="d-flex align-content-center my-5">
+        <button class="ssl-button me-3">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdComunicazione }, new { @class = "text-white text-decoration-none" })
+        </button>
+        <button class="ssl-button">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+        </button>
+    </div>
+
+}
+else
+{
+    <button class="ssl-button my-5">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+    </button>
+}
+
+

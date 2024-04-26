@@ -1,10 +1,8 @@
 namespace SSLazio.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Calciatrici")]
     public partial class Calciatrici
@@ -33,7 +31,8 @@ namespace SSLazio.Models
         [StringLength(100)]
         public string Nazionalita { get; set; }
 
-        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataNascita { get; set; }
 
         [Required]

@@ -1,115 +1,123 @@
 ﻿using SSLazio.Models;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SSLazio.Controllers
 {
-    public class PartiteController : Controller
+    public class TrophiesController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: Partite
+        // GET: Trophies
         public ActionResult Index()
         {
-            return View(db.Partite.ToList());
+            return View(db.Trophies.ToList());
         }
 
-        // GET: Partite/Details/5
+        // GET: Trophies/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Trophies trophies = db.Trophies.Find(id);
+            if (trophies == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(trophies);
         }
 
-        // GET: Partite/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Trophies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Partite/Create
+        // POST: Trophies/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPartita,NomePartita,DataOra,LogoLazio,LogoAvversario,LogoCompetizione,Luogo")] Partite partite)
+        public ActionResult Create([Bind(Include = "IDTrofeo,ImgTrofeo,ImgSquadra,NomeTrofeo,AnnoTrofeo,Descrizione")] Trophies trophies, HttpPostedFileBase img)
         {
+            if (img != null && img.ContentLength > 0)
+            {
+                string nomeFile = Path.GetFileName(img.FileName);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/News/"), nomeFile);
+                img.SaveAs(pathToSave);
+                trophies.ImgTrofeo = "/Content/News/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
+                trophies.ImgSquadra = "/Content/News/" + nomeFile;
+            }
+
             if (ModelState.IsValid)
             {
-                db.Partite.Add(partite);
+                db.Trophies.Add(trophies);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(partite);
+            return View(trophies);
         }
 
-        // GET: Partite/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Trophies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Trophies trophies = db.Trophies.Find(id);
+            if (trophies == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(trophies);
         }
 
-        // POST: Partite/Edit/5
+        // POST: Trophies/Edit/5
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPartita,NomePartita,DataOra,LogoLazio,LogoAvversario,LogoCompetizione,Luogo")] Partite partite)
+        public ActionResult Edit([Bind(Include = "IDTrofeo,ImgTrofeo,ImgSquadra,NomeTrofeo,AnnoTrofeo,Descrizione")] Trophies trophies)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(partite).State = EntityState.Modified;
+                db.Entry(trophies).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(partite);
+            return View(trophies);
         }
 
-        // GET: Partite/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Trophies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Trophies trophies = db.Trophies.Find(id);
+            if (trophies == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(trophies);
         }
 
-        // POST: Partite/Delete/5
+        // POST: Trophies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Partite partite = db.Partite.Find(id);
-            db.Partite.Remove(partite);
+            Trophies trophies = db.Trophies.Find(id);
+            db.Trophies.Remove(trophies);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

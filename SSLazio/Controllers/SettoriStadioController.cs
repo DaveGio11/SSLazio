@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SSLazio.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SSLazio.Models;
 
 namespace SSLazio.Controllers
 {
@@ -37,6 +33,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: SettoriStadio/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.IdPartita = new SelectList(db.Partite, "IdPartita", "NomePartita");
@@ -62,6 +59,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: SettoriStadio/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +93,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: SettoriStadio/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

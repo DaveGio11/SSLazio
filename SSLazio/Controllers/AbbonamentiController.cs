@@ -60,8 +60,9 @@ namespace ProvaBiglietti.Controllers
         public ActionResult Create(int? idSettoreAbb)
         {
 
-            DateTime dataInizio = new DateTime(2024, 04, 11); // Imposta la data di inizio del periodo consentito
+            DateTime dataInizio = new DateTime(2024, 02, 11); // Imposta la data di inizio del periodo consentito
             DateTime dataFine = dataInizio.AddMonths(1); // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
+
 
             if (DateTime.Today < dataInizio || DateTime.Today > dataFine)
             {

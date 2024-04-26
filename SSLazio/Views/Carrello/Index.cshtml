@@ -82,7 +82,7 @@
                         <hr />
                         <div class="mt-2">
                             <h5>Resoconto Ordine</h5>
-                            <p>Total: @String.Format("{0:F2}", Model.Sum(item => item.Prezzo * item.Quantita)) £</p>
+                            <p>Total: @String.Format("{0:F2}", Model.Sum(item => item.Prezzo * item.Quantita)) &euro;</p>
                             <p>Tempi di consegna: @GetRandomDeliveryDays() giorni lavorativi</p>
                         </div>
                     </form>

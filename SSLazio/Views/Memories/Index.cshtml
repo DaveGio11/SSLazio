@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SSLazio.Models.Memories>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .carousel-caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: white;
+        padding: 10px;
+    }
+
+    .carousel-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+    }
+</style>
+
+<h2 class="text-center my-5">Storia Del Club</h2>
+@if (User.IsInRole("Admin"))
+{
+    <button class="button1 my-3 d-flex">
+        @Html.ActionLink("Aggiungi News", "Create", null, new { @class = "text-white text-decoration-none" })
+    </button>
+}
+
+<div id="carouselExampleCaptions" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (var item in Model.Select((value, index) => new { value, index }))
+        {
+            <div class="carousel-item @if (item.index == 0) { <text>active</text> }">
+                <div class="carousel-caption text-center">
+                    <p class="h3 text-blu bordobianco">@item.value.DataStoria</p>
+                    <p class="h5 text-blu bordobianco">@item.value.TitoloStoria</p>
+                </div>
+                <img src="@Url.Content("~/Content/Storia/" + @item.value.ImgStoria)" class="d-block w-100 rounded" alt="Image @item.index" height="550">
+                <div class="carousel-text text-center">
+                    <p>@item.value.Descrizione</p>
+                    <div>
+                        @if (User.IsInRole("Admin"))
+                        {
+
+
+                            <button class="button1 shadow">
+                                <a href="@Url.Action("Edit", new { id = item.value.IdStoria })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                    Modifica
+                                </a>
+                            </button>
+                            <button class="button1 shadow">
+                                <a href="@Url.Action("Details", new { id = item.value.IdStoria })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                    Dettagli
+                                </a>
+                            </button>
+
+
+                        }
+                        else
+                        {
+                            <button class="button1 shadow">
+                                <a href="@Url.Action("Details", new { id = item.value.IdStoria })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                    Dettagli
+                                </a>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

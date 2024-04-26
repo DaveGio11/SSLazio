@@ -1,0 +1,58 @@
+﻿@model SSLazio.Models.Trophies
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trophies</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgTrofeo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgTrofeo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgSquadra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgSquadra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeTrofeo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeTrofeo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnoTrofeo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnoTrofeo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDTrofeo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

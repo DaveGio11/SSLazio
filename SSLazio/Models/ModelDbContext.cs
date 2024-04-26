@@ -15,6 +15,9 @@ namespace SSLazio.Models
         public virtual DbSet<Calciatrici> Calciatrici { get; set; }
         public virtual DbSet<DettaglioOrdini> DettaglioOrdini { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Trophies> Trophies { get; set; }
+        public virtual DbSet<Memories> Memories { get; set; }
+        public virtual DbSet<Communications> Communications { get; set; }
         public virtual DbSet<Ordini> Ordini { get; set; }
         public virtual DbSet<Partite> Partite { get; set; }
         public virtual DbSet<Prodotti> Prodotti { get; set; }
@@ -105,5 +108,7 @@ namespace SSLazio.Models
                 .WithRequired(e => e.Utenti)
                 .WillCascadeOnDelete(false);
         }
+
+
     }
 }

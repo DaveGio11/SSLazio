@@ -20,7 +20,7 @@
 
             <p class="h1 text-white">Abbonamenti</p>
             <p class="h3 my-3">Stagione 2023/2024</p>
-            @*<p class="h5">Campagna abbonamenti aperta dal DataInizio a DataFine</p>*@
+            <p class="h5">Campagna abbonamenti aperta dal @ViewBag.DataInizio a @ViewBag.DataFine</p>
             @if (User.IsInRole("Tifoso"))
             {
                 <p class="h6">Benvenuto @nomeUtente, scegli il settore che preferisci ed attiva il tuo abbonamento!</p>
@@ -79,9 +79,9 @@
         <div class="row align-items-center">
             <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.NomeSettore)</div>
             <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.PostiDisponibili)</div>
-            <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.Intero)</div>
-            <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.Under16)</div>
-            <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.Aquilotto)</div>
+            <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.Intero) &euro;</div>
+            <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.Under16) &euro;</div>
+            <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.Aquilotto) &euro;</div>
             @if (User.IsInRole("Tifoso"))
             {
                 <div class="col-2">

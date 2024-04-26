@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SSLazio.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SSLazio.Models;
 
 namespace SSLazio.Controllers
 {
@@ -17,6 +14,14 @@ namespace SSLazio.Controllers
         // GET: SettoriAbb
         public ActionResult Index()
         {
+            DateTime dataInizio = new DateTime(2024, 2, 11);
+            string dataFormattata = dataInizio.ToString("dd/MM/yyyy"); // Imposta la data di inizio del periodo consentito
+            DateTime dataFine = dataInizio.AddMonths(1);
+            string dataFormattataFine = dataFine.ToString("dd/MM/yyyy"); // Imposta la data di inizio del periodo consentito
+
+            // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
+            ViewBag.DataInizio = dataFormattata;
+            ViewBag.DataFine = dataFormattataFine;
             return View(db.SettoriAbb.ToList());
         }
 
@@ -36,6 +41,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: SettoriAbb/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +65,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: SettoriAbb/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +97,7 @@ namespace SSLazio.Controllers
         }
 
         // GET: SettoriAbb/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

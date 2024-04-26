@@ -1,0 +1,55 @@
+﻿@model SSLazio.Models.Memories
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center my-3">Dettaglio Evento</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img class="card-img-top my-3" src="@Url.Content("~/Content/Storia/" + Model.ImgStoria)" alt="Card image cap" height="450px">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5 class="my-3 h1 text-center">@Html.DisplayFor(model => model.TitoloStoria)</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="my-3 h3 text-center">@Html.DisplayFor(model => model.DataStoria)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="my-3 text-center">@Html.DisplayFor(model => model.Descrizione)</p>
+        </div>
+    </div>
+</div>
+
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="d-flex align-content-center my-5">
+        <button class="ssl-button me-3">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdStoria }, new { @class = "text-white text-decoration-none" })
+        </button>
+        <button class="ssl-button me-3">
+            @Html.ActionLink("Delete", "Delete", new { id = Model.IdStoria }, new { @class = "text-white text-decoration-none" })
+        </button>
+        <button class="ssl-button">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+        </button>
+    </div>
+
+}
+else
+{
+    <button class="ssl-button my-5">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-white text-decoration-none" })
+    </button>
+}
+
+

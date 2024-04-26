@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SSLazio.Models.Communications>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center my-5">Comunicazioni Ufficiali</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <button class="ssl-button my-3 d-flex">
+        @Html.ActionLink("Aggiungi News", "Create", null, new { @class = "text-white text-decoration-none" })
+    </button>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-6">
+                <a href="@Url.Action("Details", new { id = item.IdComunicazione })" style="text-decoration: none;">
+                    <div class="card mb-3 my-4">
+                        <img class="card-img-top " src="@Url.Content("~/Content/News/" + item.ImgComunicazione)" alt="Card image cap" width="440" height="250" style="object-fit:cover">
+                        <div class="card-body w-100">
+                            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.TitoloCom)</h5>
+                            <i>@Html.DisplayFor(modelItem => item.DataComunicazione)</i>
+                            @if (User.IsInRole("Admin"))
+                            {
+
+                                <div class="my-2">
+                                    <button class="button1 shadow">
+                                        <a href="@Url.Action("Edit", new { id = item.IdComunicazione })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                            Modifica
+                                        </a>
+                                    </button>
+                                    <button class="button1 shadow">
+                                        <a href="@Url.Action("Delete", new { id = item.IdComunicazione })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                            Elimina
+                                        </a>
+                                    </button>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+    </div>
+</div>
+

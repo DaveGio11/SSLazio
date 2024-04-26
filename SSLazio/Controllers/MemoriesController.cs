@@ -1,115 +1,122 @@
 ﻿using SSLazio.Models;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SSLazio.Controllers
 {
-    public class PartiteController : Controller
+    public class MemoriesController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: Partite
+        // GET: Memories
         public ActionResult Index()
         {
-            return View(db.Partite.ToList());
+            return View(db.Memories.ToList());
         }
 
-        // GET: Partite/Details/5
+        // GET: Memories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Memories memories = db.Memories.Find(id);
+            if (memories == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(memories);
         }
 
-        // GET: Partite/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Memories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Partite/Create
+        // POST: Memories/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPartita,NomePartita,DataOra,LogoLazio,LogoAvversario,LogoCompetizione,Luogo")] Partite partite)
+        public ActionResult Create([Bind(Include = "IdStoria,ImgStoria,TitoloStoria,DataStoria,Descrizione")] Memories memories, HttpPostedFileBase img)
         {
+            if (img != null && img.ContentLength > 0)
+            {
+                string nomeFile = Path.GetFileName(img.FileName);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/Storia/"), nomeFile);
+                img.SaveAs(pathToSave);
+                memories.ImgStoria = "/Content/Storia/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
+
+            }
             if (ModelState.IsValid)
             {
-                db.Partite.Add(partite);
+                db.Memories.Add(memories);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(partite);
+            return View(memories);
         }
 
-        // GET: Partite/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Memories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Memories memories = db.Memories.Find(id);
+            if (memories == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(memories);
         }
 
-        // POST: Partite/Edit/5
+        // POST: Memories/Edit/5
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPartita,NomePartita,DataOra,LogoLazio,LogoAvversario,LogoCompetizione,Luogo")] Partite partite)
+        public ActionResult Edit([Bind(Include = "IdStoria,ImgStoria,TitoloStoria,DataStoria,Descrizione")] Memories memories)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(partite).State = EntityState.Modified;
+                db.Entry(memories).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(partite);
+            return View(memories);
         }
 
-        // GET: Partite/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Memories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partite partite = db.Partite.Find(id);
-            if (partite == null)
+            Memories memories = db.Memories.Find(id);
+            if (memories == null)
             {
                 return HttpNotFound();
             }
-            return View(partite);
+            return View(memories);
         }
 
-        // POST: Partite/Delete/5
+        // POST: Memories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Partite partite = db.Partite.Find(id);
-            db.Partite.Remove(partite);
+            Memories memories = db.Memories.Find(id);
+            db.Memories.Remove(memories);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

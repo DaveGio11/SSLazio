@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SSLazio.Models.Trophies>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgTrofeo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgSquadra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeTrofeo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnoTrofeo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImgTrofeo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImgSquadra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeTrofeo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnoTrofeo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDTrofeo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDTrofeo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDTrofeo })
+        </td>
+    </tr>
+}
+
+</table>
