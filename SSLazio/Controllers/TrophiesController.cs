@@ -30,6 +30,7 @@ namespace SSLazio.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(trophies);
         }
 
@@ -44,16 +45,21 @@ namespace SSLazio.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDTrofeo,ImgTrofeo,ImgSquadra,NomeTrofeo,AnnoTrofeo,Descrizione")] Trophies trophies, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "IDTrofeo,ImgTrofeo,ImgSquadra,NomeTrofeo,AnnoTrofeo,Descrizione,Formazione,ImgDettaglio1,ImgDettaglio2,ImgDettaglio3,ImgDettaglio4, TextDetail1, TextDetail2, TextDetail3, TextDetail4")] Trophies trophies, HttpPostedFileBase img)
         {
             if (img != null && img.ContentLength > 0)
             {
                 string nomeFile = Path.GetFileName(img.FileName);
-                string pathToSave = Path.Combine(Server.MapPath("~/Content/News/"), nomeFile);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/Trofei/"), nomeFile);
                 img.SaveAs(pathToSave);
-                trophies.ImgTrofeo = "/Content/News/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
-                trophies.ImgSquadra = "/Content/News/" + nomeFile;
+                trophies.ImgTrofeo = "/Content/Trofei/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
+                trophies.ImgSquadra = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio1 = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio2 = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio3 = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio4 = "/Content/Trofei/" + nomeFile;
             }
+
 
             if (ModelState.IsValid)
             {
@@ -85,8 +91,20 @@ namespace SSLazio.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDTrofeo,ImgTrofeo,ImgSquadra,NomeTrofeo,AnnoTrofeo,Descrizione")] Trophies trophies)
+        public ActionResult Edit([Bind(Include = "IDTrofeo,ImgTrofeo,ImgSquadra,NomeTrofeo,AnnoTrofeo,Descrizione,Formazione,ImgDettaglio1,ImgDettaglio2,ImgDettaglio3,ImgDettaglio4, TextDetail1, TextDetail2, TextDetail3, TextDetail4")] Trophies trophies, HttpPostedFileBase img)
         {
+            if (img != null && img.ContentLength > 0)
+            {
+                string nomeFile = Path.GetFileName(img.FileName);
+                string pathToSave = Path.Combine(Server.MapPath("~/Content/Trofei/"), nomeFile);
+                img.SaveAs(pathToSave);
+                trophies.ImgTrofeo = "/Content/Trofei/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
+                trophies.ImgSquadra = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio1 = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio2 = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio3 = "/Content/Trofei/" + nomeFile;
+                trophies.ImgDettaglio4 = "/Content/Trofei/" + nomeFile;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(trophies).State = EntityState.Modified;

@@ -3,55 +3,129 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    a {
+        color: inherit; /* Utilizza il colore del testo predefinito del genitore */
+        text-decoration: none; /* Rimuove il sottolineato predefinito */
+    }
 
-<h2>Index</h2>
+        a:hover {
+            color: inherit; /* Mantiene il colore del testo predefinito al passaggio del mouse */
+            text-decoration: none; /* Mantiene la rimozione del sottolineato al passaggio del mouse */
+        }
+</style>
+<h2 class="my-5 text-center">Trofei e Squadre</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ImgTrofeo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImgSquadra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeTrofeo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnnoTrofeo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImgTrofeo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImgSquadra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeTrofeo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnnoTrofeo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrizione)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDTrofeo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDTrofeo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDTrofeo })
-        </td>
-    </tr>
+@if (User.IsInRole("Admin"))
+{
+    <button class="ssl-button my-3 d-flex">
+        @Html.ActionLink("Aggiungi News", "Create", null, new { @class = "text-white text-decoration-none" })
+    </button>
 }
 
-</table>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-6">
+                <a href="@Url.Action("Details", new { id = item.IDTrofeo })" class="text-gold" style="text-decoration: none;">
+                    <div class="card mb-3 my-4">
+                        <div class="card-header button1 m-0">
+                            <h5 class="card-card-title text-center my-2 text-white">@Html.DisplayFor(modelItem => item.NomeTrofeo) @Html.DisplayFor(modelItem => item.AnnoTrofeo)</h5>
+                        </div>
+                        <div>
+                            <div class="row p-2">
+                                <div class="col-4">
+                                    <img class="card-img-top " src="@Url.Content("~/Content/Trofei/" + item.ImgTrofeo)" alt="Card image cap" width="90" height="220">
+                                </div>
+                                <div class="col-8">
+                                    <img class="card-img-top " src="@Url.Content("~/Content/Trofei/" + item.ImgSquadra)" alt="Card image cap" width="800" height="220">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer w-100">
+
+
+                            @if (User.IsInRole("Admin"))
+                            {
+
+                                <div class="my-2 d-flex justify-content-center">
+                                    <button class="button1 shadow">
+                                        <a href="@Url.Action("Edit", new { id = item.IDTrofeo })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                            Modifica
+                                        </a>
+                                    </button>
+                                    <button class="button1 shadow">
+                                        <a href="@Url.Action("Delete", new { id = item.IDTrofeo })" class="text-blu text-decoration-none" style="text-decoration: none;">
+                                            Elimina
+                                        </a>
+                                    </button>
+                                </div>
+                            }
+                            else
+                            {
+                                <i>SS Lazio - Trofei</i>
+                            }
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+@*
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgTrofeo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgSquadra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeTrofeo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnoTrofeo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgTrofeo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgSquadra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeTrofeo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnoTrofeo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descrizione)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IDTrofeo }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IDTrofeo }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.IDTrofeo })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

@@ -12,8 +12,16 @@
 }
 
 
+
+
 @if (User.IsInRole("Admin"))
 {
+    <div class="row  my-3">
+        <div class="col-12">
+            <input type="text" id="searchInput" class="form-control" placeholder="Cerca per Cognome...">
+        </div>
+    </div>
+
     <h2 class="text-center my-5">Lista Abbonamenti</h2>
 }
 else
@@ -22,9 +30,11 @@ else
 }
 
 
+
+
 @foreach (var item in Model)
 {
-    <div class="container-fluid text-blu">
+    <div class="container-fluid text-blu abbonamento-card">
         <div class="row justify-content-center justify-content-lg-evenly align-items-center">
             @*-----------------------------------------------------------*@
             <div class="col-12 col-lg-6 mb-3 mb-lg-5">
@@ -51,7 +61,7 @@ else
                                             </strong>
                                         </div>
                                         <div class="mb-2">
-                                            <strong>
+                                            <strong class="abbonamento-nome">
                                                 @Html.DisplayFor(modelItem => item.Cognome)
                                             </strong>
                                         </div>
@@ -111,6 +121,27 @@ else
                 // Mostra il messaggio con un popup di Bootstrap modal:
                 // $('#errorMessageModal').modal('show');
             }
+        });
+
+        $(document).ready(function () {
+            // Funzione per filtrare gli abbonamenti
+            function filterAbbonamenti(searchTerm) {
+                // Nascondi tutti gli abbonamenti
+                $('.abbonamento-card').hide();
+                // Mostra solo quelli che corrispondono al termine di ricerca
+                $('.abbonamento-card').each(function () {
+                    var nome = $(this).find('.abbonamento-nome').text().toLowerCase();
+                    if (nome.includes(searchTerm.toLowerCase())) {
+                        $(this).show();
+                    }
+                });
+            }
+
+            // Gestisci l'evento di input nella barra di ricerca
+            $('#searchInput').on('input', function () {
+                var searchTerm = $(this).val();
+                filterAbbonamenti(searchTerm);
+            });
         });
     </script>
 }
