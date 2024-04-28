@@ -284,6 +284,7 @@
     <Content Include="Content\PartiteLogo\CoppaItalia.png" />
     <Content Include="Content\PartiteLogo\Fiorentina.png" />
     <Content Include="Content\PartiteLogo\frame.png" />
+    <Content Include="Content\PartiteLogo\frameNbg.png" />
     <Content Include="Content\PartiteLogo\Frecciarossa.png" />
     <Content Include="Content\PartiteLogo\Frosinone.png" />
     <Content Include="Content\PartiteLogo\Lazio.png" />
@@ -311,6 +312,9 @@
     <Content Include="Content\Sfondi\Divisa.jpg" />
     <Content Include="Content\Sfondi\Sfondo80b.jpg" />
     <Content Include="Content\Sfondi\Sfondo80.png" />
+    <Content Include="Content\Sfondi\SfondoTicket1.png" />
+    <Content Include="Content\Sfondi\SfondoTicket2.png" />
+    <Content Include="Content\Sfondi\SfondoTicket3.jpg" />
     <Content Include="Content\Sfondi\Stadio1.png" />
     <Content Include="Content\Sfondi\Stadio2.jpg" />
     <Content Include="Content\Sfondi\Stadio3.jpg" />

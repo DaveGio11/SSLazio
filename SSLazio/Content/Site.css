@@ -54,7 +54,40 @@ body {
     }
 
 
+/* ---------------------------------------------------- INPUT ----------------------------------------------------------------*/
 
+.inputCreate {
+    color: #8fd4e8;
+    border: 2px solid #8fd4e8;
+    border-radius: 10px;
+    padding: 10px 25px;
+    background: transparent;
+    max-width: 214px;
+}
+
+    .inputCreate:focus,
+    .inputCreate:active {
+        box-shadow: 2px 2px 15px #8fd4e8 inset;
+        background: transparent;
+        color: #8fd4e8;
+    }
+
+
+.inputCart {
+    color: #8fd4e8;
+    border: 2px solid #cbc094;
+    border-radius: 10px;
+    padding: 10px 25px;
+    background: transparent;
+    max-width: 214px;
+}
+
+    .inputCart:focus,
+    .inputCar:active {
+        box-shadow: 2px 2px 15px #cbc094 inset;
+        background: transparent;
+        color: #8fd4e8;
+    }
 
 /*-------------------------- NAVBAR ----------------------------------------*/
 /*

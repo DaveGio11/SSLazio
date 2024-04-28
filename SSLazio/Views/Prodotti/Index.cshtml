@@ -8,8 +8,23 @@
     var cart = Session["cart"] as List<SSLazio.Models.Prodotti>;
     var cartItemCount = cart?.Sum(item => item.Quantita) ?? 0;
 }
+<style>
+    .inputCreate {
+        color: #8fd4e8;
+        border: 2px solid #8fd4e8;
+        border-radius: 10px;
+        padding: 10px 25px;
+        background: transparent;
+        max-width: 214px;
+    }
 
-<link href="~/Content/Site.css" rel="stylesheet" />
+        .inputCreate:focus,
+        .inputCreate:active {
+            box-shadow: 2px 2px 15px #8fd4e8 inset;
+            background: transparent;
+            color: #8fd4e8;
+        }
+</style>
 
 
 
@@ -67,6 +82,11 @@
 
 
 <div class="container-fluid my-5">
+    <div class="row my-4">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control inputCreate" placeholder="Cerca per nome prodotto" />
+        </div>
+    </div>
     <div class="row">
         @foreach (var item in Model)
         {
@@ -83,7 +103,7 @@
                                 </div>
                             </div>
                         </a>
-                        <p class="mt-3">@item.NomeProdotto</p>
+                        <p class="mt-3 productName">@item.NomeProdotto</p>
                         <div class="d-flex discountPremium">
                             <p class="card-text">
                                 <strong>&euro;: @item.Prezzo.ToString("F2") &nbsp; </strong>
@@ -132,5 +152,52 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('input', function () {
+                var searchText = $(this).val().toLowerCase();
+                $('.col-12').each(function () {
+                    var productName = $(this).find('.productName').text().toLowerCase();
+                    if (productName.indexOf(searchText) === -1) {
+                        $(this).addClass('d-none');
+                    } else {
+                        $(this).removeClass('d-none');
+                    }
+                });
+            });
+        });
+
+
+           $(document).ready(function () {
+            // Controlla se esiste il messaggio "Order" nella TempData
+            var orderMessage = '@TempData["Order"]';
+            // Controlla se il messaggio è già stato mostrato
+            var orderMessageShown = sessionStorage.getItem("orderMessageShown");
+            if (orderMessage && !orderMessageShown) {
+                // Stile CSS per il popup
+                var style = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #d4edda; color: #155724; border: 2px solid #c3e6cb; padding: 20px; border-radius: 10px; z-index: 9999;';
+
+                // Mostra il popup con stile personalizzato
+                var messageWithStyle = '<div id="popup" style="' + style + '">' +
+                                            orderMessage +
+                                        '</div>';
+
+                // Aggiungi il popup alla pagina
+                $('body').prepend(messageWithStyle);
+                // Imposta il flag per indicare che il messaggio è stato mostrato
+                sessionStorage.setItem("orderMessageShown", "true");
+
+                // Chiudi il popup dopo 5 secondi
+                setTimeout(function () {
+                    $('#popup').fadeOut();
+                }, 5000);
+            }
+        });
+
+    </script>
+}
+
 
 

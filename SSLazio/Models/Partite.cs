@@ -4,7 +4,6 @@ namespace SSLazio.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Partite")]
     public partial class Partite
@@ -23,6 +22,7 @@ namespace SSLazio.Models
         [StringLength(100)]
         public string NomePartita { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DataOra { get; set; }
 
         [Required]

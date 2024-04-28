@@ -22,6 +22,13 @@
         }
 </style>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <div id="timer" style="display: none;">
     Tempo rimanente: <span id="countdownDisplay"></span>
     <img id="logo" src="~/Content/PartiteLogo/Lazio.png" alt="logolazio" width="50" />
@@ -212,17 +219,17 @@
 }
 
 @if (User.IsInRole("Admin"))
-            {
-                <div>
-                    <button class="ssl-button my-3 d-flex">
-                        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-blu bordobianco text-decoration-none" })
-                    </button>
-                </div>
-            }
+{
+    <div>
+        <button class="ssl-button my-3 d-flex">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-blu bordobianco text-decoration-none" })
+        </button>
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
+    <script>
         $(function () {
             $('#dataNascita').change(function () {
                 var dataNascita = new Date($(this).val());
@@ -291,5 +298,5 @@
 });
 
         });
-</script>
+    </script>
 }

@@ -6,7 +6,7 @@
 }
 <link href="~/Content/Site.css" rel="stylesheet" />
 
-<h2>Details</h2>
+<h2 class="my-5 text-center">Biglietto</h2>
 
 <div class="container-fluid text-blu bg-white border border-1 border-white">
     <header class="mb-3">
@@ -81,7 +81,7 @@
             {
                 <div class="d-flex flex-column">
                     <strong>Data e Ora Evento</strong>
-                    <h6>@Model.Partite.DataOra</h6>
+                    <h6>@Model.Partite.DataOra.ToString("dd/MM/yyyy HH:mm")</h6>
                 </div>
             }
             <div>

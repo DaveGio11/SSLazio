@@ -88,18 +88,9 @@ namespace SSLazio.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDCalciatrice,ImgCalciatrice,Nome,Cognome,Ruolo,NumeroMaglia,Nazionalita,DataNascita,Descrizione,Presenze,MinutiGiocati,Gol,Assist,CartelliniGialli,CartelliniRossi,ImgRuolo,ImgCalciatrice2")] Calciatrici calciatrici, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "IDCalciatrice,ImgCalciatrice,Nome,Cognome,Ruolo,NumeroMaglia,Nazionalita,DataNascita,Descrizione,Presenze,MinutiGiocati,Gol,Assist,CartelliniGialli,CartelliniRossi,ImgRuolo,ImgCalciatrice2")] Calciatrici calciatrici)
         {
-            if (img != null && img.ContentLength > 0)
-            {
-                string nomeFile = Path.GetFileName(img.FileName);
-                string pathToSave = Path.Combine(Server.MapPath("~/Content/Girls/"), nomeFile);
-                img.SaveAs(pathToSave);
-                calciatrici.ImgCalciatrice = "/Content/Girls/" + nomeFile; // Assicurati che ImgCalciatore sia il campo corretto per l'URL dell'immagine nel tuo modello Giocatori
-                calciatrici.ImgRuolo = "/Content/Team/" + nomeFile;
-                calciatrici.ImgCalciatrice2 = "/Content/Team/" + nomeFile;
 
-            }
 
             if (ModelState.IsValid)
             {

@@ -60,7 +60,7 @@ namespace ProvaBiglietti.Controllers
         public ActionResult Create(int? idSettoreAbb)
         {
 
-            DateTime dataInizio = new DateTime(2024, 02, 11); // Imposta la data di inizio del periodo consentito
+            DateTime dataInizio = new DateTime(2024, 03, 28); // Imposta la data di inizio del periodo consentito
             DateTime dataFine = dataInizio.AddMonths(1); // Imposta la data di fine del periodo consentito (un mese dopo la data di inizio)
 
 
@@ -68,7 +68,7 @@ namespace ProvaBiglietti.Controllers
             {
                 // Se la data attuale è al di fuori del periodo consentito, reindirizza l'utente o mostra un messaggio di errore
                 // Ad esempio:
-                TempData["ErrorMessage"] = "La creazione di nuovi abbonamenti è disponibile solo dal " + dataInizio.ToShortDateString() + " al " + dataFine.ToShortDateString() + ".";
+                TempData["ErrorMessage"] = "L'acquisto degli abbonamenti è disponibile solo dal " + dataInizio.ToShortDateString() + " al " + dataFine.ToShortDateString() + ".";
                 return RedirectToAction("Index"); // Reindirizza l'utente alla pagina Index o ad un'altra pagina appropriata
             }
 

@@ -11,7 +11,14 @@
 
 
 <div class="ms-xs-4 ms-sm-0 xs-md-4">
-    <h2 class="my-3">ORGANICO 23/24</h2>
+    <div class="row my-4 align-items-center justify-content-between">
+        <div class="col-8">
+            <h2 class="m-0">ORGANICO 23/24</h2>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <input type="text" id="searchInputPlayers" class="form-control inputCreate" placeholder="Search by player name" />
+        </div>
+    </div>
 
     <div class="mt-3">
         @if (User.IsInRole("Admin"))
@@ -28,7 +35,7 @@
         <h4>PORTIERI</h4>
         @foreach (var portiere in Model.Where(g => g.Ruolo == "Portiere"))
         {
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 d-flex justify-content-center">
                 <a href="@Url.Action("Details", new { id = portiere.IDCalciatrice })" class="card-link text-decoration-none">
                     <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + portiere.ImgCalciatrice)'); background-size: cover; background-position: center;">
                         <div class="card-body align-self-start m-3">
@@ -38,7 +45,7 @@
                                 </div>
                                 <div class="card-text d-flex justify-content-center mt-2">
                                     <div class="round-button mt-5">
-                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                        <img src="~/Content/Team/Logo80.png" alt="80" width="20" height="20" />
                                     </div>
                                 </div>
 
@@ -80,7 +87,7 @@
         <h4>DIFENSORI</h4>
         @foreach (var difensore in Model.Where(g => g.Ruolo == "Difensore"))
         {
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 d-flex justify-content-center">
                 <a href="@Url.Action("Details", new { id = difensore.IDCalciatrice })" class="card-link text-decoration-none">
                     <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + difensore.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
                         <div class="card-body align-self-start m-3">
@@ -90,7 +97,7 @@
                                 </div>
                                 <div class="card-text d-flex justify-content-center mt-2">
                                     <div class="round-button mt-5">
-                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                        <img src="~/Content/Team/Logo80.png" alt="80" width="20" height="20" />
                                     </div>
                                 </div>
 
@@ -133,7 +140,7 @@
         <h4>CENTROCAMPISTI</h4>
         @foreach (var centrocampista in Model.Where(g => g.Ruolo == "Centrocampista"))
         {
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 d-flex justify-content-center">
                 <a href="@Url.Action("Details", new { id = centrocampista.IDCalciatrice })" class="card-link text-decoration-none">
                     <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + centrocampista.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
                         <div class="card-body align-self-start m-3">
@@ -143,7 +150,7 @@
                                 </div>
                                 <div class="card-text d-flex justify-content-center mt-2">
                                     <div class="round-button mt-5">
-                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                        <img src="~/Content/Team/Logo80.png" alt="80" width="20" height="20" />
                                     </div>
                                 </div>
 
@@ -185,7 +192,7 @@
         <h4>ATTACCANTI</h4>
         @foreach (var attaccante in Model.Where(g => g.Ruolo == "Attaccante"))
         {
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 d-flex justify-content-center">
                 <a href="@Url.Action("Details", new { id = attaccante.IDCalciatrice })" class="card-link text-decoration-none">
                     <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + attaccante.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
                         <div class="card-body align-self-start m-3">
@@ -195,7 +202,7 @@
                                 </div>
                                 <div class="card-text d-flex justify-content-center mt-2">
                                     <div class="round-button mt-5">
-                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                        <img src="~/Content/Team/Logo80.png" alt="80" width="20" height="20" />
                                     </div>
                                 </div>
 
@@ -237,7 +244,7 @@
         <h4>Allenatore</h4>
         @foreach (var allenatore in Model.Where(g => g.Ruolo == "Allenatore"))
         {
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 d-flex justify-content-center">
                 <a href="@Url.Action("Details", new { id = allenatore.IDCalciatrice })" class="card-link text-decoration-none">
                     <div class="card1" style="background-image: url('@Url.Content("~/Content/Girls/" + allenatore.ImgCalciatrice)'); background-size: cover; background-position: center; height: 300px;">
                         <div class="card-body align-self-start m-3">
@@ -247,7 +254,7 @@
                                 </div>
                                 <div class="card-text d-flex justify-content-center mt-2">
                                     <div class="round-button mt-5">
-                                        <img src="~/Content/Team/Ottanta.png" alt="80" width="20" height="20" />
+                                        <img src="~/Content/Team/Logo80.png" alt="80" width="20" height="20" />
                                     </div>
                                 </div>
 
@@ -289,3 +296,20 @@
 </div>
 
 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#searchInputPlayers').on('input', function () {
+                var searchText = $(this).val().toLowerCase();
+                $('.card1').each(function () {
+                    var playerName = $(this).find('.bordobianco').text().toLowerCase();
+                    if (playerName.indexOf(searchText) === -1) {
+                        $(this).addClass('d-none');
+                    } else {
+                        $(this).removeClass('d-none');
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -151,6 +151,8 @@ namespace ProvaBiglietti.Controllers
                 db.Entry(settore).State = EntityState.Modified;
                 db.SaveChanges();
 
+                TempData["SuccessMessage"] = "Biglietto creato con successo.";
+
                 return RedirectToAction("Index");
             }
 

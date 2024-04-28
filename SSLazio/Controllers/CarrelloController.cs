@@ -63,7 +63,7 @@ namespace SSLazio.Controllers
                 }
                 cart.Clear();
             }
-            TempData["Order"] = "Order placed successfully!";
+            TempData["Order"] = "Acquisto avvenuto con successo!";
 
             return RedirectToAction("Index", "Prodotti");
 

@@ -59,7 +59,7 @@
         <div>
             <img class="my-5 img-fluid" src="@Url.Content("~/Content/PartiteLogo/" +Model.LogoCompetizione)" alt="Logo Competizione" height="100" width="100" />
         </div>
-        <div class="h5 display-7 text-blu bordoceleste d-flex justify-content-center">@Model.DataOra</div>
+        <div class="h5 display-7 text-blu bordoceleste d-flex justify-content-center">@Model.DataOra.ToString("dd/MM/yyyy HH:mm")</div>
         <div class="text-blu bordoceleste">@Model.Luogo</div>
     </div>
     <div class="col-4 my-5 justify-content-around text-center align-content-center">
@@ -161,7 +161,7 @@
 }
 else
 {
-    <p>Nessun settore disponibile per questa partita.</p>
+    <p class="h5 text-center my-5">Nessun settore disponibile per questa partita.</p>
 }
 
 <div class="d-flex justify-content-center my-4">

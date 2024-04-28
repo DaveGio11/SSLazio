@@ -9,9 +9,11 @@
 
 <link href="~/Content/Site.css" rel="stylesheet" />
 
-<h2>Index</h2>
+
 @if (User.IsInRole("User"))
 {
+    <h2 class="text-center my-5">Pagina Utente</h2>
+
     foreach (var item in Model)
     {
         <div class="container-fluid">
@@ -106,13 +108,13 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-4">
                     <div class="d-flex justify-content-evenly my-5">
-                       
-                            <button class="ssl-button">
-                                @Html.ActionLink("Account Tifoso", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
 
-                            </button>
-                        
-                        
+                        <button class="ssl-button">
+                            @Html.ActionLink("Account Tifoso", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+
+                        </button>
+
+
                         <button class="ssl-button">
                             @Html.ActionLink("Cancella Account", "Delete", null, new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
                         </button>
@@ -126,6 +128,8 @@
 
 @if (User.IsInRole("Tifoso"))
 {
+    <h2 class="text-center my-5">Pagina Utente</h2>
+
     foreach (var item in Model)
     {
         <div class="container-fluid">
@@ -220,13 +224,13 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-4">
                     <div class="d-flex justify-content-evenly my-5">
-                        
-                       
-                            <button class="ssl-button">
-                                @Html.ActionLink("Modifica", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
 
-                            </button>
-                       
+
+                        <button class="ssl-button">
+                            @Html.ActionLink("Modifica", "Edit", new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
+
+                        </button>
+
                         <button class="ssl-button">
                             @Html.ActionLink("Cancella Account", "Delete", null, new { id = item.IdUtente }, new { @class = "text-white text-decoration-none" })
                         </button>
@@ -241,9 +245,18 @@
 
 @if (User.IsInRole("Admin"))
 {
+    <div class="row  my-3">
+        <div class="col-12">
+            <input type="text" id="searchInput" class="form-control inputCart" placeholder="Cerca Email...">
+        </div>
+    </div>
+
+    <h2 class="text-center my-5">Lista Utenti</h2>
+
+
     foreach (var item in Model)
     {
-        <div class="container-fluid border border-2 border-white my-3">
+        <div class="container-fluid abbonamento-card border border-2 border-white my-3">
             <div class="row">
                 <div class="col-9">
                     <div class="row">
@@ -251,7 +264,7 @@
                             <strong>Email</strong>
                             @if (!string.IsNullOrEmpty(item.Email))
                             {
-                                <p class="fs-5">@item.Email</p>
+                                <p class="fs-5 abbonamento-nome">@item.Email</p>
                             }
                             else
                             {
@@ -340,15 +353,15 @@
                             }
                         </div>
                         <div class="col-4">
-                                    <strong>Residenza</strong>
-                                    @if (!string.IsNullOrEmpty(item.Residenza))
-                                    {
-                                    <p class="fs-5">@item.Residenza</p>
-                                }
-                                else
-                                {
-                                    <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
-                                }                             
+                            <strong>Residenza</strong>
+                            @if (!string.IsNullOrEmpty(item.Residenza))
+                            {
+                                <p class="fs-5">@item.Residenza</p>
+                            }
+                            else
+                            {
+                                <p class="fs-3">N/D</p> <!-- Visualizza un testo alternativo se il cognome è nullo o vuoto -->
+                            }
                         </div>
                     </div>
                 </div>
@@ -370,3 +383,29 @@
     }
 }
 
+@section scripts {
+    <script>
+        
+
+        $(document).ready(function () {
+            // Funzione per filtrare gli abbonamenti
+            function filterAbbonamenti(searchTerm) {
+                // Nascondi tutti gli abbonamenti
+                $('.abbonamento-card').hide();
+                // Mostra solo quelli che corrispondono al termine di ricerca
+                $('.abbonamento-card').each(function () {
+                    var nome = $(this).find('.abbonamento-nome').text().toLowerCase();
+                    if (nome.includes(searchTerm.toLowerCase())) {
+                        $(this).show();
+                    }
+                });
+            }
+
+            // Gestisci l'evento di input nella barra di ricerca
+            $('#searchInput').on('input', function () {
+                var searchTerm = $(this).val();
+                filterAbbonamenti(searchTerm);
+            });
+        });
+    </script>
+}

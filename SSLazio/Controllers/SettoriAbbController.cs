@@ -14,7 +14,7 @@ namespace SSLazio.Controllers
         // GET: SettoriAbb
         public ActionResult Index()
         {
-            DateTime dataInizio = new DateTime(2024, 2, 11);
+            DateTime dataInizio = new DateTime(2024, 03, 29);
             string dataFormattata = dataInizio.ToString("dd/MM/yyyy"); // Imposta la data di inizio del periodo consentito
             DateTime dataFine = dataInizio.AddMonths(1);
             string dataFormattataFine = dataFine.ToString("dd/MM/yyyy"); // Imposta la data di inizio del periodo consentito
