@@ -151,7 +151,9 @@
                 </div>
 
                 <div class="my-5">
-                    <button class="ssl-button"><a class="text-decoration-none text-blu bordobianco" href="#">Sala Trofei &raquo;</a></button>
+                    <button class="ssl-button">
+                        @Html.ActionLink("Sala Trofei", "Index", "Trophies", null, new { @class = "text-blu bordobianco text-decoration-none" })
+                    </button>
                 </div>
 
             </div>

@@ -298,6 +298,7 @@
     <Content Include="Content\PartiteLogo\TimerLogo.svg.png" />
     <Content Include="Content\Profili\Barcode.png" />
     <Content Include="Content\Profili\default.png" />
+    <Content Include="Content\Profili\Utente.jpeg" />
     <Content Include="Content\Profili\GiuseppeSimone.jpg" />
     <Content Include="Content\Profili\Millenovcento.png" />
     <Content Include="Content\SfondiShop\Carousel1.png" />

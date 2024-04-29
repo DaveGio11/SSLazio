@@ -104,17 +104,17 @@
                             </ul>
                         </li>
                         @*
-                            <li class="nav-item dropdown">
-                                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Casa Lazio
-                                </a>
-                                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
-                                    <li></li>
-                                    <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
-                                    <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
-                                    <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
-                                </ul>
-                            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Casa Lazio
+                </a>
+                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
+                    <li></li>
+                    <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
+                    <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
+                    <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
+                </ul>
+            </li>
                         *@
                         <li class="nav-item dropdown">
                             <a class="nav-link text-white" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -123,7 +123,7 @@
                             <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown5">
                                 <li> @Html.ActionLink("Biglietti", "Index", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
                                 <li> @Html.ActionLink("Abbonamenti", "Index", "SettoriAbb", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
-                                
+
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -166,17 +166,17 @@
                             </ul>
                         </li>
                         @*
-                            <li class="nav-item dropdown">
-                                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Casa Lazio
-                                </a>
-                                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
-                                    <li></li>
-                                    <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
-                                    <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
-                                    <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
-                                </ul>
-                            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Casa Lazio
+                </a>
+                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
+                    <li></li>
+                    <li><a class="dropdown-item1" href="#">Training Center SSL</a></li>
+                    <li><a class="dropdown-item1" href="#">Iscrizioni Settore Giovanile</a></li>
+                    <li><a class="dropdown-item1" href="#">Camp Estivi</a></li>
+                </ul>
+            </li>
                         *@
                         <li class="nav-item dropdown">
                             <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -199,10 +199,26 @@
                                 }
                             </ul>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-white" href="@Url.Action("Index", "Prodotti")">Shop</a>
                         </li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Back Office
+                                </a>
+                                <ul class="dropdown-menu bg-goldwhite" aria-labelledby="navbarDropdown">
+                                    <li>@Html.ActionLink("Gestione Biglietti", "Index", "Biglietti", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
+                                    <li> @Html.ActionLink("Gestione Abbonamenti", "Index", "Abbonamenti", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
+                                    <li>@Html.ActionLink("Gestione Prodotti", "Index", "Prodotti", new { area = "" }, new { @class = "dropdown-item1 text-white" })</li>
+                                    <li> @Html.ActionLink("Gestione Partite", "Index", "Partite", new { area = "" }, new { @class = "dropdown-item1 text-white" }) </li>
+                                </ul>
+                            </li>
+                        }
                     }
+
 
                 </ul>
                 <form class="d-flex">
